@@ -36,15 +36,15 @@ app.use(function(error, req, res, next){
 
     const data = {}
 
-    if(error instanceof mongoose.Error.ValidationError){
-        res.status(400);
-        for (field of Object.keys(error.errors)) {
-            error.errors[field] = error.errors[field].message
-        }
-        data.errors = error.errors
-    } else if (error instanceof mongoose.Error.CastError){
-        error = createError(404, 'Resource not found')
-    }
+    // if(error instanceof mongoose.Error.ValidationError){
+    //     res.status(400);
+    //     for (field of Object.keys(error.errors)) {
+    //         error.errors[field] = error.errors[field].message
+    //     }
+    //     data.errors = error.errors
+    // } else if (error instanceof mongoose.Error.CastError){
+    //     error = createError(404, 'Resource not found')
+    // }
 
     data.message = error.message;
     res.json(data)
