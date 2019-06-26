@@ -12,7 +12,7 @@ module.exports = session({
         maxAge: 60 * 60 * 24 * 1000
     },
     store: new MongoStore({
-        mongooseConnection = mongoose.connection,
+        mongooseConnection : mongoose.connection,
         ttl: 24 * 60 * 60
     })
 });
