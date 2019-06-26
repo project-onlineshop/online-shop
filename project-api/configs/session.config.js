@@ -11,8 +11,8 @@ module.exports = session({
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 1000
     },
-    store: new MongoStore({
-        mongooseConnection : mongoose.connection,
-        ttl: 24 * 60 * 60
-    })
+    // store: new MongoStore({
+    //     mongooseConnection : mongoose.connection,
+    //     ttl: 24 * 60 * 60
+    // })
 });

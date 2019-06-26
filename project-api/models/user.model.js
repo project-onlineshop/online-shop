@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const constants = require('../constants');
+const SALT_WORK_FACTOR = 10; 
 const EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+const PASSWORD_PATTERN = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+const URL_PATTERN = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
 
 const userSchema = new mongoose.Schema({
 
-    name:{
+    name: {
         type: String,
     },
-    email:{
+    email: {
         type: String,
         required: 'Email is required',
         unique: true,
@@ -18,29 +20,64 @@ const userSchema = new mongoose.Schema({
         trim: true,
         match: [EMAIL_PATTERN, 'Invalid email pattern']
     },
-    password:{
+    password: {
         type: String,
         required: 'Password is required',
-        match: [PASSWORD_PATTERN, 'Password is required']
+        match: [PASSWORD_PATTERN, 'Passwords must contain at least six characters, including uppercase, lowercase letters and numbers.']
     },
-    category:{
+    category: {
         type: String,
         required: 'Category is required',
         enum: constants.category
     },
-    image:{
+    image: {
         type: String,
+        match: [URL_PATTERN, 'Invalid avatar URL pattern']
     },
-    price:{
+    price: {
         type: Number,
         required: 'Price is required'
     },
-    description:{
+    description: {
         type: String,
-        required: 'Description is required'
+        required: 'Description is required',
+        maxlength: 250
     }
 
-})
+}, {
+    timestamps: true,
+    toJSON: {
+      transform: (doc, ret) => {
+        ret.id = doc._id;
+        delete ret._id;
+        delete ret.__v;
+        delete ret.password;
+        return ret;
+      }
+    }
+  });
+  
+  userSchema.pre('save', function (next) {
+    const user = this;
+  
+    if (!user.isModified('password')) {
+      next();
+    } else {
+      bcrypt.genSalt(SALT_WORK_FACTOR)
+        .then(salt => {
+          return bcrypt.hash(user.password, salt)
+            .then(hash => {
+              user.password = hash;
+              next();
+            })
+        })
+        .catch(next)
+    }
+  });
+  
+  userSchema.methods.checkPassword = function (password) {
+    return bcrypt.compare(password, this.password);
+  }
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
