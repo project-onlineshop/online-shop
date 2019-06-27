@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const constants = require('../constants');
 const SALT_WORK_FACTOR = 10; 
 const EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 const PASSWORD_PATTERN = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -24,24 +23,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: 'Password is required',
         match: [PASSWORD_PATTERN, 'Passwords must contain at least six characters, including uppercase, lowercase letters and numbers.']
-    },
-    category: {
-        type: String,
-        required: 'Category is required',
-        enum: constants.category
-    },
-    image: {
-        type: String,
-        match: [URL_PATTERN, 'Invalid avatar URL pattern']
-    },
-    price: {
-        type: Number,
-        required: 'Price is required'
-    },
-    description: {
-        type: String,
-        required: 'Description is required',
-        maxlength: 250
     }
 
 }, {
