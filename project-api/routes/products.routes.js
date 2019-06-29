@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const products = require('../controllers/products.controller');
+const products = require('../controllers/product.controller');
 const secure = require('../middlewares/secure.mid');
 
 router.get('/', secure.isAuthenticated, products.list);

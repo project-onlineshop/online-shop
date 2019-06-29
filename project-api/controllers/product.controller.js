@@ -9,9 +9,10 @@ module.exports.list = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
     const product = new Product({
-        title: req.body.title
+        name: req.body.name,
+        category: req.body.category,
+        description: req.body.description
     });
-
     product.save()
     .then(product => res.status(201).json(product))
     .catch(next)
