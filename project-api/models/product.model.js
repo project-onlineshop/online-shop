@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        match: [URL_PATTERN, 'Invalid avatar URL pattern']
+        match: [URL_PATTERN, 'Invalid avatar URL pattern'],
+        required: 'Image is required'
     },
     price: {
         type: Number,
