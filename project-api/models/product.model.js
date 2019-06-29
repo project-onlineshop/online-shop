@@ -3,6 +3,7 @@ const constants = require('../constants');
 const URL_PATTERN = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
 const userSchema = new mongoose.Schema({
+    
     name : {
         type: String,
         required: 'Name is required'

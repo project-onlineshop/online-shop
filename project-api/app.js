@@ -27,6 +27,7 @@ app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
+//estas son las rutas que lleva el navegador
 app.use('/products', productsRouter)
 app.use('/', authRouter);
 

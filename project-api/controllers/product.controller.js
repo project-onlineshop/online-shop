@@ -9,6 +9,7 @@ module.exports.list = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
     const product = new Product({
+        //aqui le pasamos los parámetros requeridos del modelo del producto
         name: req.body.name,
         category: req.body.category,
         description: req.body.description,
@@ -20,6 +21,7 @@ module.exports.create = (req, res, next) => {
     .catch(next)
 }
 
+//aqui recogemos los datos de los productos
 module.exports.get = (req, res, next) => {
     Product.findById(req.params.id)
     .populate('products')
