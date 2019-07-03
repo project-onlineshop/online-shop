@@ -17,8 +17,8 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home}/>
-          <PrivateRoute exact path="/posts" component={ProductsBase} />
-          <PrivateRoute exact path="/posts/new" component={ProductForm} />
+          <PrivateRoute exact path="/products" component={ProductsBase} />
+          <PrivateRoute exact path="/products/new" component={ProductForm} />
           <Route exact path="/" component={() => (
             <Redirect to="/home" />
           )} />

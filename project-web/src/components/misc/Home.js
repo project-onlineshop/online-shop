@@ -5,7 +5,7 @@ const Home = () => (
   <article className="Home">
     <div className="jumbotron container">
       <h1 className="display-4">insta-web</h1>
-      <p className="lead">Go to <Link to="/posts">posts</Link></p>
+      <p className="lead">Go to <Link to="/products">products</Link></p>
     </div>
   </article>
 )
