@@ -4,7 +4,8 @@ const passport = require('passport');
 
 module.exports.register = (req, res, next) => {
     User.findOne({
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
     })
     .then(user => {
         if(user) throw createError(409, 'User already register')

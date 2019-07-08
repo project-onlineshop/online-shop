@@ -6,11 +6,11 @@ import { withAuthContext } from '../../contexts/AuthStore';
 
 const validators = {
     email: v => v.length > 0,
-    password: v => v.length >8
+    password: v => v.length > 8
 }
 
 class Login extends React.Component {
-    
+
     state = {
         data: {
             email: '',
@@ -57,7 +57,7 @@ class Login extends React.Component {
 
         if (!touch[attr]) {
             return ''
-        } else if (errors[attr]){
+        } else if (errors[attr]) {
             return 'is-invalid'
         } else {
             return 'is-valid'
@@ -75,7 +75,7 @@ class Login extends React.Component {
             error => {
                 this.setState({
                     wrongCredentials: true,
-                    errors : {
+                    errors: {
                         ...this.state.errors,
                         email: true,
                         password: true
@@ -85,52 +85,54 @@ class Login extends React.Component {
         )
     }
 
-    render(){
+    render() {
         const { data, errors, touch } = this.state
 
         const hasErrors = Object.values(errors).some(el => el === true)
 
-        if (this.state.goToHome){
-            return <Redirect to = "/"/>
+        if (this.state.goToHome) {
+            return <Redirect to="/" />
         }
 
         return (
-            <form className="login" onSubmit={this.handleSubmit}>
-      
-              {this.state.wrongCredentials && (
-                <div className="alert alert-danger" role="alert">
-                  wrong credentials
-                </div>)
-              }
-      
-              <FormField
-                label="email"
-                name="email"
-                onBlur={this.handleBlur}
-                value={data.email}
-                onChange={this.handleChange}
-                touch={touch.email}
-                error={errors.email}
-                inputType="text"
-                validationClassName={this.getValidationClassName('email')} />
-              
-              <FormField
-                label="password"
-                name="password"
-                onBlur={this.handleBlur}
-                value={data.password}
-                onChange={this.handleChange}
-                touch={touch.password}
-                error={errors.password}
-                inputType="password"
-                validationClassName={this.getValidationClassName('password')} />
-      
-              <button type="submit"
-                className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
-                disabled={hasErrors}>Submit</button>
-            </form>
-          )
-        }
-      }
-      
-      export default withAuthContext(Login)
+            <div className="row justify-content-md-center">
+                <form className="login" onSubmit={this.handleSubmit}>
+
+                    {this.state.wrongCredentials && (
+                        <div className="alert alert-danger" role="alert">
+                            Wrong credentials
+                        </div>)
+                    }
+
+                    <FormField
+                        label="email"
+                        name="email"
+                        onBlur={this.handleBlur}
+                        value={data.email}
+                        onChange={this.handleChange}
+                        touch={touch.email}
+                        error={errors.email}
+                        inputType="text"
+                        validationClassName={this.getValidationClassName('email')} />
+
+                    <FormField
+                        label="password"
+                        name="password"
+                        onBlur={this.handleBlur}
+                        value={data.password}
+                        onChange={this.handleChange}
+                        touch={touch.password}
+                        error={errors.password}
+                        inputType="password"
+                        validationClassName={this.getValidationClassName('password')} />
+
+                    <button type="submit"
+                        className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
+                        disabled={hasErrors}>Submit</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+export default withAuthContext(Login)

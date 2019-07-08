@@ -1,10 +1,13 @@
 import React from 'react'
 import Product from './Product';
 import ProductsService from '../../services/ProductsService';
+import SearchBar from '../misc/SearchBar';
+import queryString from 'query-string';
 
 class ProductsList extends React.Component {
   state = {
-    products: []
+    products: [],
+    searchProducts: []
   }
 
   fetchProducts = () => {
@@ -19,6 +22,12 @@ class ProductsList extends React.Component {
     this.fetchProducts()
   }
 
+  handleSearch = (text) => {
+    this.setState({
+      searchProducts: this.state.products.filter(e => e.name.toLowerCase().includes(text.toLowerCase()))
+    })
+  }
+
   deleteProduct = (productId) => {
     ProductsService.deleteProduct(productId).then(
       response => {
@@ -28,12 +37,20 @@ class ProductsList extends React.Component {
   }
 
   render () {
+
+    const querySearch = queryString.parse(this.props.location.search)
+
     return (
-      <div className="ProductsList">
-        {this.state.products.map((product, i) => (
-          <Product product={product} key={i} onDeleteProduct={this.deleteProduct}/>
-        ))}
+      <div>
+
+        <SearchBar onChange={this.handleSearch} querySearch={querySearch}/>
+        <div className="ProductsList">
+          {this.state.products.map((product, i) => (
+            <Product product={product} key={i} onDeleteProduct={this.deleteProduct}/>
+          ))}
+        </div>
       </div>
+      
     )
   }
 }

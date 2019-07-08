@@ -5,7 +5,7 @@ import { withAuthContext } from '../../contexts/AuthStore';
 const Header = (props) => (
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div className="container">
-      <Link className="navbar-brand" to="/">insta-web</Link>
+      <Link className="navbar-brand" to="/">Iron-wallapop</Link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

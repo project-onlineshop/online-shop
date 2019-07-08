@@ -4,22 +4,22 @@ import ProductService from '../../services/ProductsService'
 import { Redirect } from 'react-router-dom'
 
 const validators = {
-  title: value => value.length > 3,
-  attachment: value => value.length > 10,
+  name: value => value.length > 3,
+  category: value => value.length > 10,
   message: value => value.length > 3
 }
 
 class ProductForm extends React.Component {
   state = {
     data: {
-      title: '',
+      name: '',
       message: '',
-      attachment: ''
+      category: ''
     },
     errors: {
-      title: true,
+      name: true,
       message: true,
-      attachment: true
+      category: true
     },
     goToProducts: false,
     touch: {}
@@ -102,26 +102,26 @@ class ProductForm extends React.Component {
 
         <form onSubmit={this.handleSubmit}>
           <FormField
-            label="Title"
-            name="title"
+            label="Name"
+            name="name"
             onBlur={this.handleBlur}
-            value={data.title}
+            value={data.name}
             onChange={this.handleChange}
-            touch={touch.title}
-            error={errors.title}
+            touch={touch.name}
+            error={errors.name}
             inputType="text"
-            validationClassName={this.getValidationClassName('title')} />
+            validationClassName={this.getValidationClassName('name')} />
           
           <FormField
-            label="Attachment"
-            name="attachment"
+            label="category"
+            name="category"
             onBlur={this.handleBlur}
-            value={data.attachment}
+            value={data.category}
             onChange={this.handleChange}
-            touch={touch.attachment}
-            error={errors.attachment}
+            touch={touch.category}
+            error={errors.category}
             inputType="text"
-            validationClassName={this.getValidationClassName('attachment')} />
+            validationClassName={this.getValidationClassName('category')} />
           
           <FormField
             label="Message"
