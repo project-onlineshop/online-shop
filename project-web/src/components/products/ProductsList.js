@@ -13,7 +13,7 @@ class ProductsList extends React.Component {
   fetchProducts = () => {
     ProductsService.getProducts().then(
       response => {
-        this.setState({ products: response.data })
+        this.setState({ products: response.data,  searchProducts:response.data })
       }
     )
   }
@@ -23,6 +23,7 @@ class ProductsList extends React.Component {
   }
 
   handleSearch = (text) => {
+    console.log('In')
     this.setState({
       searchProducts: this.state.products.filter(e => e.name.toLowerCase().includes(text.toLowerCase()))
     })
@@ -43,9 +44,9 @@ class ProductsList extends React.Component {
     return (
       <div>
 
-        <SearchBar onChange={this.handleSearch} querySearch={querySearch}/>
+        <SearchBar onSearch={this.handleSearch} querySearch={querySearch}/>
         <div className="ProductsList">
-          {this.state.products.map((product, i) => (
+          {this.state.searchProducts.map((product, i) => (
             <Product product={product} key={i} onDeleteProduct={this.deleteProduct}/>
           ))}
         </div>

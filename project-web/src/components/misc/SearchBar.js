@@ -10,8 +10,8 @@ class SearchBar extends Component {
     handleChange = (e) =>{
         this.setState({
             [e.target.name]: e.target.value,
-            error: (e.target.value.length <= 5)
-        })
+            error: (e.target.value.length <= 3)
+        }, () => this.props.onSearch(this.state.searchText))
     }
 
     handleBlur = (e) => {
@@ -22,6 +22,7 @@ class SearchBar extends Component {
         e.preventDefault()
     
         this.props.onSearch(this.state.searchText)
+
       }
     
       componentDidMount() {

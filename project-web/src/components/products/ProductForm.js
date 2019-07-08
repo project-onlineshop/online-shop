@@ -5,21 +5,27 @@ import { Redirect } from 'react-router-dom'
 
 const validators = {
   name: value => value.length > 3,
-  category: value => value.length > 10,
-  message: value => value.length > 3
+  category: value => value.length > 3,
+  description: value => value.length > 10,
+  price: value => Number.isInteger(+value),
+  image: value => value.length > 20
 }
 
 class ProductForm extends React.Component {
   state = {
     data: {
       name: '',
-      message: '',
-      category: ''
+      description: '',
+      category: '',
+      price: '',
+      image: ''
     },
     errors: {
       name: true,
-      message: true,
-      category: true
+      description: true,
+      category: true,
+      price: true,
+      image: true
     },
     goToProducts: false,
     touch: {}
@@ -68,7 +74,7 @@ class ProductForm extends React.Component {
     event.preventDefault()
 
     ProductService.createProduct(this.state.data).then(
-      () => {        
+      () => {
         this.setState({ goToProducts: true })
       },
       error => {
@@ -88,9 +94,9 @@ class ProductForm extends React.Component {
     )
   }
 
-  render () {
+  render() {
     if (this.state.goToProducts) {
-      return <Redirect to="/products"/>
+      return <Redirect to="/products" />
     }
 
     const { data, errors, touch } = this.state
@@ -111,9 +117,9 @@ class ProductForm extends React.Component {
             error={errors.name}
             inputType="text"
             validationClassName={this.getValidationClassName('name')} />
-          
+
           <FormField
-            label="category"
+            label="Category"
             name="category"
             onBlur={this.handleBlur}
             value={data.category}
@@ -122,18 +128,40 @@ class ProductForm extends React.Component {
             error={errors.category}
             inputType="text"
             validationClassName={this.getValidationClassName('category')} />
-          
+
           <FormField
-            label="Message"
-            name="message"
+            label="Price"
+            name="price"
             onBlur={this.handleBlur}
-            value={data.message}
+            value={data.price}
             onChange={this.handleChange}
-            touch={touch.message}
-            error={errors.message}
+            touch={touch.price}
+            error={errors.price}
+            inputType="text"
+            validationClassName={this.getValidationClassName('price')} />
+
+          <FormField
+            label="Image"
+            name="image"
+            onBlur={this.handleBlur}
+            value={data.image}
+            onChange={this.handleChange}
+            touch={touch.image}
+            error={errors.image}
+            inputType="text"
+            validationClassName={this.getValidationClassName('image')} />
+
+          <FormField
+            label="Description"
+            name="description"
+            onBlur={this.handleBlur}
+            value={data.description}
+            onChange={this.handleChange}
+            touch={touch.description}
+            error={errors.description}
             inputType="textarea"
-            validationClassName={this.getValidationClassName('message')} />
-        
+            validationClassName={this.getValidationClassName('description')} />
+
           <button type="submit"
             className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
             disabled={hasErrors}>Submit</button>
