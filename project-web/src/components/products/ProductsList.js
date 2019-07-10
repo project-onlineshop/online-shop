@@ -13,7 +13,7 @@ class ProductsList extends React.Component {
   fetchProducts = () => {
     ProductsService.getProducts().then(
       response => {
-        this.setState({ products: response.data,  searchProducts:response.data })
+        this.setState({ products: response.data, searchProducts:response.data })
       }
     )
   }

@@ -19,8 +19,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home}/>
           <Route exact path="/products" component={ProductsBase} />
-          <Route exact path="/products/:id" component={ProductDetail} />
           <PrivateRoute exact path="/products/new" component={ProductForm} />
+          <Route exact path="/products/:id" component={ProductDetail} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/" component={() => (
             <Redirect to="/products" />

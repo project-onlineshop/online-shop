@@ -3,6 +3,7 @@ import courses from '../data/courses.json'
 import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
+import { Link } from 'react-router-dom'
 
 const validations = {
   course: (value) => {
@@ -105,6 +106,7 @@ class Profile extends Component {
 
     return (
       <div className="box mx-auto">
+        <Link to="/products/new" className="btn btn-primary">New Product</Link>
         <div className="row">
           <i className="fa fa-sign-out btn-logout" onClick={this.handleLogout}></i>
           <div className="col-6">
