@@ -18,7 +18,7 @@ const getProfile = () => http.get('/profile')
       .then(res => Promise.resolve(res.data));
   }
 
-const logout = () => http.post('/logout')
+const logout = () => http.get('/logout')
 
 export default {
     register,

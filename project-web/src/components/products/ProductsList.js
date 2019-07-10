@@ -7,8 +7,16 @@ import queryString from 'query-string';
 class ProductsList extends React.Component {
   state = {
     products: [],
-    searchProducts: []
+    searchProducts: [],
+    favouriteProducts: []
   }
+
+  addToFavourite = (product) => {
+    this.setState({
+      favouriteProducts: [product, ...this.state.favouriteProducts]
+    })
+  }
+
 
   fetchProducts = () => {
     ProductsService.getProducts().then(

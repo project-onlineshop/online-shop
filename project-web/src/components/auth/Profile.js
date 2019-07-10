@@ -3,7 +3,8 @@ import courses from '../data/courses.json'
 import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
 
 const validations = {
   course: (value) => {

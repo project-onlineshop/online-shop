@@ -1,15 +1,15 @@
 import React from 'react'
 import Product from './Product';
 
-const Favourites = ({ episodes }) => {
+const Favourites = ({ products }) => {
   return (
     <div className="Favourites">
-      <h4>Favourite Episodes</h4>
+      <h4>Favourite products</h4>
 
       <div className="row">
-        {episodes.map((e, i) =>(
-          <div className="col-12 mb-4" key={i}>
-            <Product episode={e} isFavourite/>
+        {products.map((elem, index) =>(
+          <div className="col-12 mb-4" key={index}>
+            <Product product={elem} isFavourite/>
           </div>
         ))}
       </div>
