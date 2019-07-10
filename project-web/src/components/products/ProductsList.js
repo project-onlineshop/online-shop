@@ -43,7 +43,6 @@ class ProductsList extends React.Component {
 
     return (
       <div>
-
         <SearchBar onSearch={this.handleSearch} querySearch={querySearch}/>
         <div className="ProductsList">
           {this.state.searchProducts.map((product, i) => (

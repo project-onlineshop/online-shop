@@ -2,6 +2,28 @@ import React from 'react';
 import FormField from '../misc/FormField';
 import ProductService from '../../services/ProductsService'
 import { Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
+// import clsx from 'clsx';
+// import { makeStyles } from '@material-ui/core/styles';
+
+// const useStyles = makeStyles(theme => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: 200,
+//   },
+//   dense: {
+//     marginTop: 19,
+//   },
+//   menu: {
+//     width: 200,
+//   },
+// }));
 
 const validators = {
   name: value => value.length > 3,
@@ -10,6 +32,9 @@ const validators = {
   price: value => Number.isInteger(+value),
   image: value => value.length > 20
 }
+
+//   const classes = useStyles();
+
 
 class ProductForm extends React.Component {
   state = {
@@ -70,6 +95,8 @@ class ProductForm extends React.Component {
     }
   }
 
+
+
   handleSubmit = (event) => {
     event.preventDefault()
 
@@ -128,6 +155,13 @@ class ProductForm extends React.Component {
             error={errors.category}
             inputType="text"
             validationClassName={this.getValidationClassName('category')} />
+{/* 
+          <TextField
+            id="standard-dense"
+            label="Dense"
+            className={clsx(classes.textField, classes.dense)}
+            margin="dense"
+          /> */}
 
           <FormField
             label="Price"
@@ -161,6 +195,10 @@ class ProductForm extends React.Component {
             error={errors.description}
             inputType="textarea"
             validationClassName={this.getValidationClassName('description')} />
+
+          {/* <Button variant="contained" color="primary">
+      Hello World
+    </Button> */}
 
           <button type="submit"
             className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}

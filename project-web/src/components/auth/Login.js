@@ -2,7 +2,7 @@ import React from 'react';
 import FormField from '../misc/FormField';
 import AuthService from '../../services/AuthService';
 import { Redirect } from 'react-router-dom'
-import { withAuthContext } from '../../contexts/AuthStore';
+import { withAuthConsumer } from '../../contexts/AuthStore';
 
 const validators = {
     email: v => v.length > 0,
@@ -135,4 +135,4 @@ class Login extends React.Component {
     }
 }
 
-export default withAuthContext(Login)
+export default withAuthConsumer(Login)

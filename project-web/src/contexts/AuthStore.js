@@ -9,34 +9,34 @@ class AuthStore extends Component {
   }
 
   handleUserChange = (user) => {
-    this.setState({ user });
+    this.setState({ user: user })
     if (user) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user))
     else localStorage.removeItem(CURRENT_USER_KEY)
   }
 
-  isAuthenticated = () => this.state.user && this.state.user.email
+  isAuthenticated = () => {
+    return this.state.user && this.state.user.email 
+  }
 
   render() {
     return (
-      <AuthContext.Provider value={{
+      <AuthContext.Provider value={{ 
         user: this.state.user,
         onUserChange: this.handleUserChange,
         isAuthenticated: this.isAuthenticated
-      }}>
+        }}>
         {this.props.children}
       </AuthContext.Provider>
     );
   }
 }
 
-const withAuthContext = (WrappedComponent) => {
-  return (props) => {
-    return (
-      <AuthContext.Consumer>
-        {(consumerProps) => (<WrappedComponent {...consumerProps} {...props} />)}
-      </AuthContext.Consumer>
-    )
-  }
+const withAuthConsumer = (WrappedComponent) => {
+  return () => (
+    <AuthContext.Consumer>
+      {(props) => (<WrappedComponent {...props} />)}
+    </AuthContext.Consumer>
+  );
 }
 
-export { AuthStore, AuthContext, withAuthContext }
+export { AuthStore, AuthContext, withAuthConsumer }

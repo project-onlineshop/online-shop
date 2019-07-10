@@ -7,7 +7,8 @@ import NotFound from './misc/NotFound';
 import ProductForm from './products/ProductForm';
 import Login from './auth/Login';
 import PrivateRoute from '../guards/PrivateRoute';
-// import Product from './products/Product';
+import Profile from '../components/auth/Profile';
+import ProductDetail from './products/ProductDetail';
 
 function App() {
   return (
@@ -18,9 +19,11 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home}/>
           <Route exact path="/products" component={ProductsBase} />
+          <Route exact path="/products/:id" component={ProductDetail} />
           <PrivateRoute exact path="/products/new" component={ProductForm} />
+          <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/" component={() => (
-            <Redirect to="/home" />
+            <Redirect to="/products" />
           )} />
 
           <Route path="/" component={NotFound}/>

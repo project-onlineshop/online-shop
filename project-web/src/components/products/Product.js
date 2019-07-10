@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Product = ({ product, onDeleteProduct }) => {
   const handleDelete = () => onDeleteProduct(product.id)
 
   return (
     <div className="card mb-4">
-      <img src={product.image} className="card-img-top" alt="product" />
+      <Link to={`/products/${product.id}`}><img src={product.image} className="card-img-top" alt="product" /></Link>
 
       <div className="card-body">
         <h5 className="card-title"><b>Nombre:</b> {product.name}</h5>
