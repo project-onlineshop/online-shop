@@ -29,7 +29,7 @@ const Product = ({ product, onDeleteProduct }) => {
           ))}
         </p> */}
 
-        <button className="btn btn-danger btn-sm" onClick={handleDelete}>Delete</button>
+        <button className="btn btn-danger btn-sm" onClick={handleDelete}>Delete</button><i class="fa fa-heart"></i>
       </div>
 
     </div>
