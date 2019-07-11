@@ -4,7 +4,7 @@ import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
 import { Link } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
+import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import '../../App.css'
 
 const validations = {
@@ -108,7 +108,7 @@ class Profile extends Component {
 
     return (
       <div className="box mx-auto">
-        <Link to="/products/new" className="btn btn-primary">New Product</Link>
+        <Link to="/products/new" ><i className="fa fa-plus-circle"></i></Link>
         <div className="row">
           <i className="fa fa-sign-out btn-logout" onClick={this.handleLogout}></i>
           <div className="col-5">

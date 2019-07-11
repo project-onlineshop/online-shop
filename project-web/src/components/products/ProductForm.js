@@ -2,6 +2,12 @@ import React from 'react';
 import FormField from '../misc/FormField';
 import ProductService from '../../services/ProductsService'
 import { Redirect } from 'react-router-dom'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
 // import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 // import clsx from 'clsx';
@@ -145,7 +151,7 @@ class ProductForm extends React.Component {
             inputType="text"
             validationClassName={this.getValidationClassName('name')} />
 
-          <FormField
+          {/* <FormField
             label="Category"
             name="category"
             onBlur={this.handleBlur}
@@ -154,7 +160,7 @@ class ProductForm extends React.Component {
             touch={touch.category}
             error={errors.category}
             inputType="text"
-            validationClassName={this.getValidationClassName('category')} />
+            validationClassName={this.getValidationClassName('category')} /> */}
 {/* 
           <TextField
             id="standard-dense"
@@ -162,6 +168,21 @@ class ProductForm extends React.Component {
             className={clsx(classes.textField, classes.dense)}
             margin="dense"
           /> */}
+
+<FormControl >
+        <InputLabel htmlFor="cat-helper">Category</InputLabel>
+        <Select
+          onChange={this.handleChange}
+          input={<Input name="category" id="cat-helper" />}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={data.category}>Carsssssss</MenuItem>
+          <MenuItem value={data.category}>MOto</MenuItem>
+          <MenuItem value={data.category}>Thirty</MenuItem>
+        </Select>
+</FormControl>
 
           <FormField
             label="Price"

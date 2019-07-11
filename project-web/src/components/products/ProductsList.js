@@ -4,6 +4,7 @@ import ProductsService from '../../services/ProductsService';
 import SearchBar from '../misc/SearchBar';
 import queryString from 'query-string';
 import '../../App.css'
+import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 
 class ProductsList extends React.Component {
   state = {

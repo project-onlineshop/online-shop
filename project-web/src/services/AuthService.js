@@ -1,8 +1,10 @@
 import http from './BaseService';
 
-const register = user => http.post('/register', user)
+const register = (user) => http.post('/register', user)
+.then(res => Promise.resolve(res.data));
 
-const authenticate = credentials => http.post('/authenticate', credentials)
+const authenticate = (user) => http.post('/authenticate', user)
+.then(res => Promise.resolve(res.data));
 
 const getProfile = () => http.get('/profile')
   .then(res => Promise.resolve(res.data));

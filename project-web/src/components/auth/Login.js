@@ -132,7 +132,7 @@ class Login extends React.Component {
                         disabled={hasErrors}>Submit</button>
                     <div className="row">
                         If you are not already register, go to <Link to="/register"> &nbsp;Register</Link>
-                </div>
+                    </div>
                 </form>
 
 

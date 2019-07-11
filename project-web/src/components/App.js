@@ -22,11 +22,11 @@ function App() {
           <Route exact path="/home" component={Home}/>
           <Route exact path="/register" component={Register}/>
           <Route exact path="/products" component={ProductsBase} />
-          <PrivateRoute exact path="/products/new" component={ProductForm} />
+          <Route exact path="/products/new" component={ProductForm} />
           <PrivateRoute exact path="/products/favs" component={ProductFav} />
           <Route exact path="/products/:id" component={ProductDetail} />
           
-          <PrivateRoute exact path="/profile" component={Profile} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/" component={() => (
             <Redirect to="/products" />
           )} />

@@ -34,14 +34,15 @@ class SearchBar extends Component {
       
       render() {
         return (
-          <div className="SearchBar row mb-4">
+          <div className="SearchBar row mb-4 d-flex justify-content-center h-100">
             <div className="col-8">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label>Search</label>
-                  <input type="text" className="form-control"
+                  {/* <label>Search</label> */}
+                  <input type="text" className="form-control search_input"
                     name="searchText"
                     autoComplete="off"
+                    placeholder = "Search..."
                     value={this.state.searchText}
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
@@ -54,7 +55,7 @@ class SearchBar extends Component {
                   )}
                 </div>
     
-                <button type="submit" className="btn btn-primary" disabled={this.state.error}>Search</button>
+                {/* <button type="submit" className="btn btn-primary" disabled={this.state.error}>Search</button> */}
               </form>
             </div>
           </div>

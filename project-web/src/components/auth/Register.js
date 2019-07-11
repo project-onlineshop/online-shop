@@ -146,7 +146,7 @@ export default class Register extends Component {
             <h5>Hello!!</h5>
             <p className="lead mb-5">Welcome to IronProfile!</p>
             <p className="mb-2"><small>If you signup, you agree with all our terms and conditions where we can do whatever we want with the data!</small></p>
-            <button className="btn btn-white" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
+            <button className="btn btn-danger" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
           </div>
         </div>
       </div>
