@@ -3,6 +3,7 @@ import FormField from '../misc/FormField';
 import AuthService from '../../services/AuthService';
 import { Redirect } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
+import { Link } from 'react-router-dom';
 
 const validators = {
     email: v => v.length > 0,
@@ -129,8 +130,15 @@ class Login extends React.Component {
                     <button type="submit"
                         className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
                         disabled={hasErrors}>Submit</button>
+                    <div className="row">
+                        If you are not already register, go to <Link to="/register"> &nbsp;Register</Link>
+                </div>
                 </form>
+
+
             </div>
+
+
         )
     }
 }

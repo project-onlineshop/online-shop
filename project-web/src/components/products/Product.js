@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-
 const Product = ({ product, onDeleteProduct }) => {
   const handleDelete = () => onDeleteProduct(product.id)
 

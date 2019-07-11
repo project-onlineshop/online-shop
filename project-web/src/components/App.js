@@ -10,6 +10,7 @@ import PrivateRoute from '../guards/PrivateRoute';
 import Profile from '../components/auth/Profile';
 import ProductDetail from './products/ProductDetail';
 import ProductFav from './products/ProductFav';
+import Register from './auth/Register';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home}/>
+          <Route exact path="/register" component={Register}/>
           <Route exact path="/products" component={ProductsBase} />
           <PrivateRoute exact path="/products/new" component={ProductForm} />
           <PrivateRoute exact path="/products/favs" component={ProductFav} />

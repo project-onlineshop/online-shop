@@ -5,6 +5,7 @@ import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
 import { Link } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
+import '../../App.css'
 
 const validations = {
   course: (value) => {
@@ -110,7 +111,7 @@ class Profile extends Component {
         <Link to="/products/new" className="btn btn-primary">New Product</Link>
         <div className="row">
           <i className="fa fa-sign-out btn-logout" onClick={this.handleLogout}></i>
-          <div className="col-6">
+          <div className="col-5">
             <h3>Profile</h3>
             <form id="profile-form" className="mt-4" onSubmit={this.handleSubmit}>
               <div className="form-group">
@@ -138,7 +139,7 @@ class Profile extends Component {
               </div>
             </form>
           </div>
-          <div className="col-6 pt-4">
+          <div className="col-5 pt-4">
             <label htmlFor="avatar" className="avatar"><img src={user.avatar ? URL.createObjectURL(user.avatar) : user.avatarURL} className="rounded mb-3" alt="Cinque Terre" /></label>
             <input type="file" id="avatar"  name="avatar" onChange={this.handleChange} />
             <button className="btn btn-white" form="profile-form" type="submit" disabled={!this.isValid()}>Update profile</button>

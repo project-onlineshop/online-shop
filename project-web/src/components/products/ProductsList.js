@@ -3,6 +3,7 @@ import Product from './Product';
 import ProductsService from '../../services/ProductsService';
 import SearchBar from '../misc/SearchBar';
 import queryString from 'query-string';
+import '../../App.css'
 
 class ProductsList extends React.Component {
   state = {

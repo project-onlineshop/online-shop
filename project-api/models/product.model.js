@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const constants = require('../constants');
 const URL_PATTERN = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
-const userSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
     
     name : {
         type: String,
@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: 'Description is required',
         maxlength: 250
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Product',
+        required: true
     }
 }, {
         timestamps: true,
@@ -41,5 +46,5 @@ const userSchema = new mongoose.Schema({
     });
 
 
-const Product = mongoose.model('Product', userSchema);
+const Product = mongoose.model('Product', ProductSchema);
 module.exports = Product;
