@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { withAuthConsumer, AuthContext } from '../../contexts/AuthStore';
 
 
-const Product = ({ product, onDeleteProduct }) => {
+const Product = (props) => {
   const handleDelete = () => onDeleteProduct(product.id)
+  const handleFavs = () => onFavProducts(product.id)
 
+  const {product, onDeleteProduct, onFavProducts } = props
 
   return (
+    <AuthContext.Consumer>
+      {({isAuthenticated}) => (
+    
     <div className="card mb-4">
       <Link to={`/products/${product.id}`}><img src={product.image} className="card-img-top" alt="product" /></Link>
 
@@ -16,23 +22,16 @@ const Product = ({ product, onDeleteProduct }) => {
         <p className="card-text"><b>Precio:</b> {product.price}</p>
         <p className="card-text"><b>Descripcion:</b>{product.description}</p>
 
+        {isAuthenticated() && (
+          <div>
+            <button className="btn btn-danger btn-sm" onClick={handleDelete}>Delete</button><i class="fa fa-heart" onclick={handleFavs}><h3>{0}</h3></i>
+          </div>
 
-        {/* <p>
-          {product.hastags.map((h, i) => (
-            <strong key={i} className="mr-1">{h}</strong>
-          ))}
-        </p>
-
-        <p>
-          {product.mentions.map((m, i) => (
-            <strong key={i} className="mr-1">{m}</strong>
-          ))}
-        </p> */}
-
-        <button className="btn btn-danger btn-sm" onClick={handleDelete}>Delete</button><i class="fa fa-heart"></i>
+        )}
       </div>
-
     </div>
+    )}
+    </AuthContext.Consumer>
   )
 }
 

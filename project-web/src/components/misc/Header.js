@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
 
-const Header = (props) => console.log(props )||(
+const Header = (props) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div className="container">
       <Link className="navbar-brand" to="/">Iron-wallapop</Link>
@@ -23,7 +23,8 @@ const Header = (props) => console.log(props )||(
 
           {props.isAuthenticated() && (
             <li className="nav-item">
-              <a className="nav-link disabled" href="javascript:;">{props.user.email}</a>
+              <a className="nav-link disabled" href="javascript:;"></a>
+              <Link to="/profile">{props.user.email}</Link>
             </li>
           )}
           

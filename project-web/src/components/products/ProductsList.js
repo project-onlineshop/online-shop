@@ -11,7 +11,8 @@ class ProductsList extends React.Component {
   state = {
     products: [],
     searchProducts: [],
-    favouriteProducts: []
+    favouriteProducts: [],
+    contadorfavs:0
   }
 
   addToFavourite = (product) => {
@@ -24,9 +25,16 @@ class ProductsList extends React.Component {
   fetchProducts = () => {
     ProductsService.getProducts().then(
       response => {
+
         this.setState({ products: response.data, searchProducts:response.data })
       }
     )
+  }
+
+  contfavs = () => {
+    this.setState({
+      contadorfavs: this.state.contadorfavs + 1
+    })
   }
 
   componentDidMount() {
@@ -57,7 +65,7 @@ class ProductsList extends React.Component {
         <SearchBar onSearch={this.handleSearch} querySearch={querySearch}/>
         <div className="ProductsList">
           {this.state.searchProducts.map((product, i) => (
-            <Product product={product} key={i} onDeleteProduct={this.deleteProduct}/>
+            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs}/>
           ))}
         </div>
       </div>

@@ -13,7 +13,27 @@
 }
 
 .card{
+  display: flex;
+  width: 100%;
   flex: 0 0 30%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-img-top{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cards{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-photo{
+  width: 100%;
 }
 
 .SearchBar{
