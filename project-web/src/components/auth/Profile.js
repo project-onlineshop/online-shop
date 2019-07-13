@@ -3,7 +3,7 @@ import courses from '../data/courses.json'
 import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import '../../App.css'
 
@@ -35,7 +35,8 @@ class Profile extends Component {
       avatar: ''
     },
     errors: {},
-    touch: {}
+    touch: {},
+    redirect: false
   }
 
   handleChange = (event) => {
@@ -89,7 +90,12 @@ class Profile extends Component {
 
   handleLogout = () => {
     authService.logout()
-      .then(() => this.props.onUserChange(null))
+      .then(() => {
+        this.props.onUserChange(null)
+          this.setState({ redirect: true })
+        })
+     
+
   }
 
   componentDidMount() {
@@ -102,6 +108,12 @@ class Profile extends Component {
 
   render() {
     const { errors, user, touch } =  this.state;
+
+    if(this.state.redirect){
+      return(
+      <Redirect to="/products"/>
+      )
+    }
 
     const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
     const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)

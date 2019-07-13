@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
 
-const Header = (props) => (
+const Header = (props) => console.log(props )||(
   <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div className="container">
       <Link className="navbar-brand" to="/">Iron-wallapop</Link>

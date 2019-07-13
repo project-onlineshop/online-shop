@@ -8,6 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
+import { withAuthConsumer } from '../../contexts/AuthStore';
 // import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 // import clsx from 'clsx';
@@ -49,12 +50,13 @@ class ProductForm extends React.Component {
       description: '',
       category: '',
       price: '',
-      image: ''
+      image: '',
+      user: this.props.user.id || {}
     },
     errors: {
       name: true,
       description: true,
-      category: true,
+      category: true, 
       price: true,
       image: true
     },
@@ -230,4 +232,4 @@ class ProductForm extends React.Component {
   }
 }
 
-export default ProductForm
+export default withAuthConsumer(ProductForm)

@@ -4,6 +4,37 @@ import AuthService from '../../services/AuthService';
 import { Redirect } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
 import { Link } from 'react-router-dom';
+// import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+// import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+}));
+
+// export default function TextFields() {
+//     const classes = useStyles();
+//     const [values, setValues] = React.useState({
+//       name: 'Cat in the Hat',
+//       age: '',
+//       multiline: 'Controlled',
+//       currency: 'EUR',
+//     });
 
 const validators = {
     email: v => v.length > 0,
@@ -71,7 +102,7 @@ class Login extends React.Component {
         AuthService.authenticate(this.state.data).then(
             (response) => {
                 this.setState({ goToHome: true })
-                this.props.onUserChange(response.data)
+                this.props.onUserChange(response)
             },
             error => {
                 this.setState({
@@ -105,9 +136,22 @@ class Login extends React.Component {
                         </div>)
                     }
 
-                    <FormField
+                    {/* <FormField
                         label="email"
                         name="email"
+                        onBlur={this.handleBlur}
+                        value={data.email}
+                        onChange={this.handleChange}
+                        touch={touch.email}
+                        error={errors.email}
+                        inputType="text"
+                        validationClassName={this.getValidationClassName('email')} /> */}
+
+                    <TextField
+                        label="email"
+                        id="standard-dense"
+                        name="email"
+                        margin="dense"
                         onBlur={this.handleBlur}
                         value={data.email}
                         onChange={this.handleChange}

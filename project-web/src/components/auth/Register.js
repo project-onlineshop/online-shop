@@ -88,7 +88,7 @@ export default class Register extends Component {
               errors: {
                 ...this.state.errors,
                 ...errors,
-                email: !errors && message
+                password: !errors && message
               }
             })
           }
@@ -104,7 +104,7 @@ export default class Register extends Component {
   render() {
     const { isRegistered, errors, user, touch } =  this.state;
     if (isRegistered) {
-      return (<Redirect to="/login" />)
+      return (<Redirect to="/products" />)
     }
 
     const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
