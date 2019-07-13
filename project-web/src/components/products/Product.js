@@ -29,6 +29,13 @@ class Product extends React.Component {
     })
   }
 
+  setTimeout = (() => {
+    this.setState({
+      visible: false
+    });
+  }, 2000);
+
+
   handleDelete = () => this.props.onDeleteProduct(this.props.onFavProductsproduct.id)
   handleFavs = () => this.contfavs()
   render() {
@@ -63,6 +70,15 @@ class Product extends React.Component {
               )}
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
+            {/* <div>
+              <div className={`alert alert-success ${this.state.showingAlert ? 'alert-shown' : 'alert-hidden'}`}>
+                <strong>Success!</strong> Thank you for subscribing!
+                </div>
+              <button onClick={this.handleClickShowAlert.bind(this)}>
+                  Show alert
+                </button>
+                (and other children)
+               </div> */}
           </div>
 
         )}

@@ -10,7 +10,7 @@ import Login from './auth/Login';
 import PrivateRoute from '../guards/PrivateRoute';
 import Profile from '../components/auth/Profile';
 import ProductDetail from './products/ProductDetail';
-import ProductFav from './products/ProductFav';
+import ProductsFavs from './products/ProductsFavs';
 import Register from './auth/Register';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/register" component={Register}/>
           <Route exact path="/products" component={ProductsBase} />
           <Route exact path="/products/new" component={ProductForm} />
-          <PrivateRoute exact path="/products/favs" component={ProductFav} />
+          <PrivateRoute exact path="/products/favs" component={ProductsFavs} />
           <Route exact path="/products/:id" component={ProductDetail} />
           
           <Route exact path="/profile" component={Profile} />
