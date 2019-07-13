@@ -31,6 +31,9 @@ const ProductSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    favs: {
+        type: Number
     }
 }, {
         timestamps: true,

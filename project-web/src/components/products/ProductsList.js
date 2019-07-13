@@ -11,8 +11,7 @@ class ProductsList extends React.Component {
   state = {
     products: [],
     searchProducts: [],
-    favouriteProducts: [],
-    contadorfavs:0
+    favouriteProducts: []
   }
 
   addToFavourite = (product) => {
@@ -31,11 +30,7 @@ class ProductsList extends React.Component {
     )
   }
 
-  contfavs = () => {
-    this.setState({
-      contadorfavs: this.state.contadorfavs + 1
-    })
-  }
+
 
   componentDidMount() {
     this.fetchProducts()

@@ -127,7 +127,7 @@ class Login extends React.Component {
         }
 
         return (
-            <div className="row justify-content-md-center">
+            <div className="row justify-content-md-center login">
                 <form className="login" onSubmit={this.handleSubmit}>
 
                     {this.state.wrongCredentials && (
