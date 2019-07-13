@@ -1,17 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthStore';
+import { Alert } from 'reactstrap';
 
 class Product extends React.Component {
 
   state = {
-    contadorfavs: 0
+    contadorfavs: 0,
+    visible: false,
+    black: true
   }
 
+  // changeColor = () => {
+  //   this.setState({
+  //     black: false
+  //   })
+  // }
+
   contfavs = () => {
-    console.log(this.state)
     this.setState({
       contadorfavs: this.state.contadorfavs + 1
+    })
+  }
+
+  handleAlert = () => {
+    this.setState({
+      visible: true,
     })
   }
 
@@ -21,7 +35,7 @@ class Product extends React.Component {
 
     const { product } = this.props
 
-  
+    // let btn_class = this.state.black ? 'fa fa-heart' : 'far fa-heart'
 
     return (
       <AuthContext.Consumer>
@@ -39,12 +53,18 @@ class Product extends React.Component {
               {isAuthenticated() && (
                 <div>
                   <button className="btn btn-danger btn-sm" onClick={this.handleDelete}>Delete</button>
-                  <i className="fa fa-heart" onClick={this.handleFavs}></i><h3>{this.state.contadorfavs}</h3>
+                  <i className="fa fa-heart" onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
                 </div>
+
+                // <button type="submit"
+                //   className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
+                //   disabled={hasErrors}>Submit</button>
 
               )}
             </div>
+            <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
           </div>
+
         )}
       </AuthContext.Consumer>
     )
