@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import courses from '../data/courses.json'
-import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -22,30 +20,24 @@ const validations = {
       message = 'Password is required';
     }
     return message;
-  },
-  course: (value) => {
-    let message;
-    if (!value) {
-      message = 'Course is required';
-    }
-    return message;
-  },
-  campus: (value) => {
-    let message;
-    if (!value) {
-      message = 'Campus is required';
-    }
-    return message;
   }
 }
+
+//hacer doble validacion
+// if (p1 != p2) {
+//   alert("Las passwords deben de coincidir");
+//   return false;
+// } else {
+//   alert("Todo esta correcto");
+//   return true; 
+// }
 
 export default class Register extends Component {
   state = {
     user: {
       email: '',
       password: '',
-      campus: campus[0],
-      course: courses[0]
+      confirmPassword: ''
     },
     errors: {},
     touch: {},
@@ -107,14 +99,14 @@ export default class Register extends Component {
       return (<Redirect to="/products" />)
     }
 
-    const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
-    const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)
+    // const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
+    // const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)
 
     return (
-      <div className="box mx-auto">
-        <div className="row">
-          <div className="col-6">
-            <h3>Sign up</h3>
+      // <div className="box mx-auto">
+        // <div className="row justify-content-md-center">
+          <div className="row justify-content-md-center login">
+            <h3 className="justify-content-md-center mb-5">Sign up</h3>
             <form id="register-form" className="mt-4" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
@@ -127,29 +119,16 @@ export default class Register extends Component {
                 <div className="invalid-feedback">{ errors.password }</div>
               </div>
               <div className="form-group">
-                <label>Campus</label>
-                <select className={`form-control ${touch.campus && errors.campus ? 'is-invalid' : ''}`} name="campus" onChange={this.handleChange} onBlur={this.handleBlur} value={user.campus}>
-                  {campusOpts}
-                </select>
-                <div className="invalid-feedback">{ errors.campus }</div>
+                <label>Confirm Password</label>
+                <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
+                <div className="invalid-feedback">{ errors.password }</div>
               </div>
-              <div className="form-group">
-                <label>Course</label>
-                <select className={`form-control ${touch.course && errors.course ? 'is-invalid' : ''}`} name="course" onChange={this.handleChange} onBlur={this.handleBlur} value={user.course}>
-                  {courseOpts}
-                </select>
-                <div className="invalid-feedback">{ errors.course }</div>
-              </div>
+              <button className="btn btn-danger" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
             </form>
+            
           </div>
-          <div className="col-6 pt-4">
-            <h5>Hello!!</h5>
-            <p className="lead mb-5">Welcome to IronProfile!</p>
-            <p className="mb-2"><small>If you signup, you agree with all our terms and conditions where we can do whatever we want with the data!</small></p>
-            <button className="btn btn-danger" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
-          </div>
-        </div>
-      </div>
+        // </div>
+      // </div>
     );
   }
 }

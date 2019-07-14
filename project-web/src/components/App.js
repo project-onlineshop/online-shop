@@ -9,6 +9,7 @@ import ProductForm from './products/ProductForm';
 import Login from './auth/Login';
 import PrivateRoute from '../guards/PrivateRoute';
 import Profile from '../components/auth/Profile';
+import EditProfile from '../components/auth/EditProfile';
 import ProductDetail from './products/ProductDetail';
 import ProductsFavs from './products/ProductsFavs';
 import Register from './auth/Register';
@@ -27,7 +28,8 @@ function App() {
           <PrivateRoute exact path="/products/favs" component={ProductsFavs} />
           <Route exact path="/products/:id" component={ProductDetail} />
           
-          <Route exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/editProfile" component={EditProfile} />
           <Route exact path="/" component={() => (
             <Redirect to="/products" />
           )} />

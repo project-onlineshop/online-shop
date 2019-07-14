@@ -11,4 +11,6 @@ router.get('/logout', auth.logout);
 router.get('/profile', secure.isAuthenticated, auth.getProfile);
 router.put('/profile', secure.isAuthenticated, uploader.single('avatar'), auth.editProfile);
 
+router.get('/editProfile', secure.isAuthenticated, auth.getProfile);
+
 module.exports = router;

@@ -59,7 +59,7 @@ class ProductsList extends React.Component {
     return (
       <div>
         <SearchBar onSearch={this.handleSearch} querySearch={querySearch}/>
-        <FilterCategory onFilterCategory={this.filterCategory} />
+        {/* <FilterCategory onFilterCategory={this.filterCategory} /> */}
         <div className="ProductsList">
           {this.state.searchProducts.map((product, i) => (
             <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs}/>
