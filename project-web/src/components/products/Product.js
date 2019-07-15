@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthStore';
-import { Alert } from 'reactstrap';
+import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class Product extends React.Component {
 
   state = {
     contadorfavs: 0,
     visible: false,
-    black: true
+    modalIsOpen: false,
   }
 
   // changeColor = () => {
@@ -16,6 +16,19 @@ class Product extends React.Component {
   //     black: false
   //   })
   // }
+
+  // setTimeout = (() => {
+  //   this.setState({
+  //     visible: false
+  //   });
+  // }, 2000);
+
+  toggleModal = () => {
+    this.setState({
+      modalIsOpen: !this.state.modalIsOpen
+    })
+  }
+
 
   contfavs = () => {
     this.setState({
@@ -29,11 +42,7 @@ class Product extends React.Component {
     })
   }
 
-  setTimeout = (() => {
-    this.setState({
-      visible: false
-    });
-  }, 2000);
+
 
 
   handleDelete = () => this.props.onDeleteProduct(this.props.onFavProductsproduct.id)
@@ -59,7 +68,7 @@ class Product extends React.Component {
 
               {isAuthenticated() && (
                 <div>
-                  <button className="btn btn-danger btn-sm" onClick={this.handleDelete}>Delete</button>
+                  <button className="btn btn-danger btn-sm" onClick={this.toggleModal} >Delete</button>
                   <i className="fa fa-heart" onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
                 </div>
 
@@ -79,6 +88,14 @@ class Product extends React.Component {
                 </button>
                 (and other children)
                </div> */}
+            <Modal isOpen={this.state.modalIsOpen}>
+              <ModalHeader toggle={this.toggleModal}></ModalHeader>
+              <ModalBody>Delete this product?</ModalBody>
+              <ModalFooter>
+                <Button color="success" onClick={this.handleDelete}>Yes</Button>
+                <Button color="danger">No</Button>
+              </ModalFooter>
+            </Modal>
           </div>
 
         )}

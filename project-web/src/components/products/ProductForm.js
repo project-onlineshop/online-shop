@@ -153,7 +153,7 @@ class ProductForm extends React.Component {
             inputType="text"
             validationClassName={this.getValidationClassName('name')} />
 
-          {/* <FormField
+          <FormField
             label="Category"
             name="category"
             onBlur={this.handleBlur}
@@ -162,7 +162,7 @@ class ProductForm extends React.Component {
             touch={touch.category}
             error={errors.category}
             inputType="text"
-            validationClassName={this.getValidationClassName('category')} /> */}
+            validationClassName={this.getValidationClassName('category')} />
 {/* 
           <TextField
             id="standard-dense"
@@ -171,7 +171,7 @@ class ProductForm extends React.Component {
             margin="dense"
           /> */}
 
-<FormControl >
+{/* <FormControl >
         <InputLabel htmlFor="cat-helper">Category</InputLabel>
         <Select
           onChange={this.handleChange}
@@ -184,7 +184,7 @@ class ProductForm extends React.Component {
           <MenuItem value={data.category}>MOto</MenuItem>
           <MenuItem value={data.category}>Thirty</MenuItem>
         </Select>
-</FormControl>
+</FormControl> */}
 
           <FormField
             label="Price"

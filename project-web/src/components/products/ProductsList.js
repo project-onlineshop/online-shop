@@ -1,11 +1,13 @@
 import React from 'react'
 import Product from './Product';
+import { Link } from 'react-router-dom';
 import ProductsService from '../../services/ProductsService';
 import SearchBar from '../misc/SearchBar';
 import queryString from 'query-string';
 import '../../App.css'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import FilterCategory from './FilterCategory';
+
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class ProductsList extends React.Component {
@@ -29,7 +31,7 @@ class ProductsList extends React.Component {
   fetchProducts = () => {
     ProductsService.getProducts().then(
       response => {
-        this.setState({ products: response.data, searchProducts:response.data })
+        this.setState({ products: response.data, searchProducts: response.data })
       }
     )
   }
@@ -44,6 +46,7 @@ class ProductsList extends React.Component {
     })
   }
 
+
   deleteProduct = (productId) => {
     ProductsService.deleteProduct(productId).then(
       response => {
@@ -52,23 +55,39 @@ class ProductsList extends React.Component {
     )
   }
 
-  render () {
+
+
+  render() {
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      console.log(scrolled);
+      var x = document.getElementById("paco");
+      if (scrolled >= 600) {
+        x.className = "show"
+      } else {
+        x.className = "hide"
+      }
+    })
 
     const querySearch = queryString.parse(this.props.location.search)
 
     return (
       <div>
-        <SearchBar onSearch={this.handleSearch} querySearch={querySearch}/>
+        <SearchBar onSearch={this.handleSearch} querySearch={querySearch} />
         {/* <FilterCategory onFilterCategory={this.filterCategory} /> */}
         <div className="ProductsList">
           {this.state.searchProducts.map((product, i) => (
-            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs}/>
+            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
+          <div id="paco">
+            <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x"></i></Link>
+          </div>
         </div>
       </div>
       
     )
   }
 }
-  
+
 export default ProductsList

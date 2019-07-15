@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './misc/Header';
-// import Footer from './misc/Footer';
+import Footer from './misc/Footer';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from './misc/Home';
 import ProductsBase from './products/ProductsBase';
@@ -37,7 +37,7 @@ function App() {
           <Route path="/" component={NotFound}/>
         </Switch>
       </main>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

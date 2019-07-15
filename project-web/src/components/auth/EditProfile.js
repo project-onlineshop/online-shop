@@ -1,36 +1,16 @@
 import React, { Component } from 'react'
-import courses from '../data/courses.json'
-import campus from '../data/campus.json'
 import authService from '../../services/AuthService'
 import { withAuthConsumer } from '../../contexts/AuthStore.js';
 import { Redirect, Link } from 'react-router-dom';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import '../../App.css'
 
-const validations = {
-  course: (value) => {
-    let message;
-    if (!value) {
-      message = 'Course is required';
-    }
-    return message;
-  },
-  campus: (value) => {
-    let message;
-    if (!value) {
-      message = 'Campus is required';
-    }
-    return message;
-  }
-}
 
 class Profile extends Component {
   state = {
     user: {
       email: '',
       password: '',
-      campus: campus[0],
-      course: courses[0],
       avatarURL: 'http://ecuciencia.utc.edu.ec/media/foto/default-user_x5fGYax.png',
       avatar: ''
     },
@@ -45,10 +25,6 @@ class Profile extends Component {
       user: {
         ...this.state.user,
         [name]: files && files[0] ? files[0] : value
-      },
-      errors: {
-        ...this.state.errors,
-        [name]: validations[name] && validations[name](value)
       }
     })
   }
@@ -115,8 +91,6 @@ class Profile extends Component {
       )
     }
 
-    const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
-    const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)
 
     return (
       <div className="box mx-auto">
@@ -135,20 +109,7 @@ class Profile extends Component {
                 <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
                 <div className="invalid-feedback">{ errors.password }</div>
               </div>
-              <div className="form-group">
-                <label>Campus</label>
-                <select className={`form-control ${touch.campus && errors.campus ? 'is-invalid' : ''}`} name="campus" onChange={this.handleChange} onBlur={this.handleBlur} value={user.campus}>
-                  {campusOpts}
-                </select>
-                <div className="invalid-feedback">{ errors.campus }</div>
-              </div>
-              <div className="form-group">
-                <label>Course</label>
-                <select className={`form-control ${touch.course && errors.course ? 'is-invalid' : ''}`} name="course" onChange={this.handleChange} onBlur={this.handleBlur} value={user.course}>
-                  {courseOpts}
-                </select>
-                <div className="invalid-feedback">{ errors.course }</div>
-              </div>
+
             </form>
           </div>
           <div className="col-5 pt-4">
