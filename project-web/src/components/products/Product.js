@@ -9,13 +9,8 @@ class Product extends React.Component {
     contadorfavs: 0,
     visible: false,
     modalIsOpen: false,
+    color: false
   }
-
-  // changeColor = () => {
-  //   this.setState({
-  //     black: false
-  //   })
-  // }
 
   // setTimeout = (() => {
   //   this.setState({
@@ -26,6 +21,7 @@ class Product extends React.Component {
   toggleModal = () => {
     this.setState({
       modalIsOpen: !this.state.modalIsOpen
+      
     })
   }
 
@@ -36,13 +32,13 @@ class Product extends React.Component {
     })
   }
 
-  handleAlert = () => {
+  handleAlert = (e) => {
+    e.preventDefault();
     this.setState({
       visible: true,
+      color: !this.state.color
     })
   }
-
-
 
 
   handleDelete = () => this.props.onDeleteProduct(this.props.onFavProductsproduct.id)
@@ -61,15 +57,15 @@ class Product extends React.Component {
             <Link to={`/products/${product.id}`}><img src={product.image} className="card-img-top" alt="product" /></Link>
 
             <div className="card-body">
-              <h5 className="card-title"><b>Nombre:</b> {product.name}</h5>
-              <p className="card-text"><b>Categoria:</b> {product.category}</p>
-              <p className="card-text"><b>Precio:</b> {product.price}</p>
-              <p className="card-text"><b>Descripcion:</b>{product.description}</p>
+              <h5 className="card-title"><b>Name:</b> {product.name}</h5>
+              <p className="card-text"><b>Category:</b> {product.category}</p>
+              <p className="card-text"><b>Price:</b> {product.price}&nbsp;€</p>
+              <p className="card-text"><b>Description:</b>{product.description}</p>
 
               {isAuthenticated() && (
                 <div>
-                  <button className="btn btn-danger btn-sm" onClick={this.toggleModal} >Delete</button>
-                  <i className="fa fa-heart" onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
+                  <button className="btn btn-danger btn-sm" onClick={this.toggleModal}>Delete</button>
+                  <i className={this.state.color ? 'fa fa-heart-red' : 'fa fa-heart'} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
                 </div>
 
                 // <button type="submit"
@@ -79,15 +75,7 @@ class Product extends React.Component {
               )}
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
-            {/* <div>
-              <div className={`alert alert-success ${this.state.showingAlert ? 'alert-shown' : 'alert-hidden'}`}>
-                <strong>Success!</strong> Thank you for subscribing!
-                </div>
-              <button onClick={this.handleClickShowAlert.bind(this)}>
-                  Show alert
-                </button>
-                (and other children)
-               </div> */}
+       
             <Modal isOpen={this.state.modalIsOpen}>
               <ModalHeader toggle={this.toggleModal}></ModalHeader>
               <ModalBody>Delete this product?</ModalBody>

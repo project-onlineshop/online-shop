@@ -4,6 +4,14 @@
   font-family: 'Muli', sans-serif;
 }
 
+.container{
+  height: auto;
+}
+
+.fa-heart-red{
+  color:red;
+}
+
 .ProductsList {
   display: flex;
   flex-direction: row;
@@ -15,10 +23,11 @@
 
 .hide {
   opacity: 0;
-  left: -100%;
+  transition: opacity .4s ease-in-out;
 }
 .show {
   opacity: 1;
+  transition: opacity .4s ease-in-out;
   left: 0;
 }
 
@@ -114,6 +123,12 @@
 @media (max-width: 800px) {
   .ProductsList {
     flex-direction: column;
+  }
+  .card-img-top{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  
   }
 }
 

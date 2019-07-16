@@ -6,7 +6,7 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import '../../App.css'
 
 
-class Profile extends Component {
+class EditProfile extends Component {
   state = {
     user: {
       email: '',
@@ -70,8 +70,6 @@ class Profile extends Component {
         this.props.onUserChange(null)
           this.setState({ redirect: true })
         })
-     
-
   }
 
   componentDidMount() {
@@ -124,4 +122,4 @@ class Profile extends Component {
   }
 }
 
-export default withAuthConsumer(Profile)
+export default withAuthConsumer(EditProfile)
