@@ -37,6 +37,26 @@ module.exports.getProfile = (req, res, next) => {
     res.json(req.user);
 }
 
+module.exports.toggleFavourite = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user._id)
+        const { productId } = req.params
+        const currentFav = user.favourites.map(x => x.toString())
+
+        if (currentFav.includes(productId)) {
+            user.favourites = user.favourites.filter(id => id.toString() !== productId)
+        } else {
+            user.favourites = [...user.favourites, productId]
+        }
+
+        await user.save()
+
+        res.json({ favourites: user.favourites })
+    } catch(error) {
+        next(error)
+    }
+}
+
 module.exports.editProfile = (req, res, next) => {
     delete req.body.email;
 

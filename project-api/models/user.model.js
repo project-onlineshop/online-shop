@@ -20,8 +20,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: 'Password is required',
     match: [PASSWORD_PATTERN, 'Passwords must contain at least six characters, including uppercase, lowercase letters and numbers.']
-  }
-
+  },
+  favourites:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product'
+  }]
 }, {
     timestamps: true,
     toJSON: {

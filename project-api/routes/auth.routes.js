@@ -11,6 +11,8 @@ router.get('/logout', auth.logout);
 router.get('/profile', secure.isAuthenticated, auth.getProfile);
 router.put('/profile', secure.isAuthenticated, uploader.single('avatar'), auth.editProfile);
 
+router.post('/toggle-favourite/:productId', secure.isAuthenticated, auth.toggleFavourite)
+
 router.get('/editProfile', secure.isAuthenticated, auth.getProfile);
 
 module.exports = router;

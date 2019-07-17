@@ -21,6 +21,7 @@ class Profile extends React.Component {
     redirect: false,
     products: [],
     modalIsOpen: false,
+    favourites: []
   }
 
   addToFavourite = (product) => {
@@ -77,7 +78,7 @@ class Profile extends React.Component {
         <h3>Tus productos en venta</h3>
         <div className="ProductsList">
           
-          {this.state.products.map((product, i) => (
+          {this.state.products.map((product, i) => this.props.user.id === product.user.id && (
             <Product showDelete={true} product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
          
