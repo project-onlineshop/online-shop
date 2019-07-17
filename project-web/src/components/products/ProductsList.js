@@ -90,10 +90,11 @@ class ProductsList extends React.Component {
           {this.state.searchProducts.map((product, i) => (
             <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
-          <div id="paco">
+          
+        </div>
+        <div class="new">
             <Link to="/products/new" ><i onScroll={this.onShow} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x'}></i></Link>
           </div>
-        </div>
       </div>
 
     )

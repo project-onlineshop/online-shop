@@ -14,25 +14,25 @@ class Product extends React.Component {
     color: false
   }
 
+  //se muestra la alerta durante 10 segundos
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({
         visible: false
       });
-    }, 20000);
+    }, 10000);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     clearInterval(this.timer);
   }
 
   toggleModal = () => {
     this.setState({
       modalIsOpen: !this.state.modalIsOpen
-      
+
     })
   }
-
 
   contfavs = () => {
     this.setState({
@@ -40,27 +40,21 @@ class Product extends React.Component {
     })
   }
 
-  handleAlert = (e) => {
-    e.preventDefault();
+  handleAlert = () => {
     this.setState({
       visible: true,
       color: !this.state.color
     })
   }
 
-
   handleDelete = () => this.props.onDeleteProduct(this.props.onFavProductsproduct.id)
   handleFavs = () => this.contfavs()
   render() {
-
-    
-
     const { product } = this.props
-
 
     return (
 
-    
+
       <AuthContext.Consumer>
         {({ isAuthenticated }) => (
 
@@ -71,12 +65,12 @@ class Product extends React.Component {
               <h5 className="card-title"><b>Name:</b> {product.name}</h5>
               <p className="card-text"><b>Category:</b> {product.category}</p>
               <p className="card-text"><b>Price:</b> {product.price}&nbsp;€</p>
-              <p className="card-text"><b>Description:</b>{product.description}</p>
+              <p className="card-text"><b>Description:</b> {product.description}</p>
 
               {isAuthenticated() && (
                 <div>
                   <button className="btn btn-danger btn-sm" onClick={this.toggleModal}>Delete</button>
-                  <i className={this.state.color ? 'fa fa-heart-red' : 'fa fa-heart'} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
+                  <i className={this.state.color ? 'fa-heart-red' : 'fa fa-heart'} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
                 </div>
 
                 // <button type="submit"
@@ -86,7 +80,7 @@ class Product extends React.Component {
               )}
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
-       
+
             <Modal isOpen={this.state.modalIsOpen}>
               <ModalHeader toggle={this.toggleModal}></ModalHeader>
               <ModalBody>Delete this product?</ModalBody>
