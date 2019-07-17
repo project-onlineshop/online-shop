@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
+import '../../App.css';
 
 const Header = (props) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
     {/* <div className="container"> */}
-      <Link className="navbar-brand" to="/">Iron-wallapop</Link>
+      <Link className="navbar-brand" to="/">ShellBy</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -23,7 +24,6 @@ const Header = (props) => (
 
           {props.isAuthenticated() && (
             <li className="nav-item">
-              <a className="nav-link disabled" href="javascript:;"></a>
               <Link to="/profile">{props.user.email}</Link>
             </li>
           )}

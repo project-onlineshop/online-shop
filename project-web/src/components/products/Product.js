@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthStore';
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import '../../App.css';
+
 
 class Product extends React.Component {
 
@@ -12,11 +14,17 @@ class Product extends React.Component {
     color: false
   }
 
-  // setTimeout = (() => {
-  //   this.setState({
-  //     visible: false
-  //   });
-  // }, 2000);
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({
+        visible: false
+      });
+    }, 20000);
+  }
+
+  componentWillMount(){
+    clearInterval(this.timer);
+  }
 
   toggleModal = () => {
     this.setState({
@@ -45,11 +53,14 @@ class Product extends React.Component {
   handleFavs = () => this.contfavs()
   render() {
 
+    
+
     const { product } = this.props
 
-    // let btn_class = this.state.black ? 'fa fa-heart' : 'far fa-heart'
 
     return (
+
+    
       <AuthContext.Consumer>
         {({ isAuthenticated }) => (
 

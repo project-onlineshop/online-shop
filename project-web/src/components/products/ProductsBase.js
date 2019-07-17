@@ -6,7 +6,7 @@ import ProductsList from './ProductsList';
 
 const ProductsBase = (props) => (
   <article className="ProductsBase">
-    <div className="d-flex justify-content-between border-bottom pb-3 mb-3">
+    <div className="d-flex justify-content-between pb-3 mb-3">
       <h3>Products</h3>
       
     </div>

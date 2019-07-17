@@ -15,7 +15,8 @@ class ProductsList extends React.Component {
     products: [],
     searchProducts: [],
     favouriteProducts: [],
-    category: null
+    category: null,
+    opacity: 0
   }
 
   addToFavourite = (product) => {
@@ -36,6 +37,14 @@ class ProductsList extends React.Component {
     )
   }
 
+  onShow = () => {
+    const scrolled = window.scrollY;
+    if (scrolled >= 600) {
+      this.setState({
+        opacity: 1
+      })
+    }
+  }
 
   componentDidMount() {
     this.fetchProducts()
@@ -60,16 +69,16 @@ class ProductsList extends React.Component {
 
   render() {
 
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      console.log(scrolled);
-      var x = document.getElementById("paco");
-      if (scrolled >= 600) {
-        x.className = "show"
-      } else {
-        x.className = "hide"
-      }
-    })
+    // window.addEventListener('scroll', () => {
+    //   const scrolled = window.scrollY;
+    //   console.log(scrolled);
+    //   var x = document.getElementById("paco");
+    //   if (scrolled >= 600) {
+    //     x.className = "show"
+    //   } else {
+    //     x.className = "hide"
+    //   }
+    // })
 
     const querySearch = queryString.parse(this.props.location.search)
 
@@ -82,11 +91,11 @@ class ProductsList extends React.Component {
             <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
           <div id="paco">
-            <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x"></i></Link>
+            <Link to="/products/new" ><i onScroll={this.onShow} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x'}></i></Link>
           </div>
         </div>
       </div>
-      
+
     )
   }
 }
