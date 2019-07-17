@@ -6,9 +6,7 @@ import SearchBar from '../misc/SearchBar';
 import queryString from 'query-string';
 import '../../App.css'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
-import FilterCategory from './FilterCategory';
 
-// import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class ProductsList extends React.Component {
   state = {

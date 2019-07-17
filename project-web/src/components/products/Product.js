@@ -30,7 +30,6 @@ class Product extends React.Component {
   toggleModal = () => {
     this.setState({
       modalIsOpen: !this.state.modalIsOpen
-
     })
   }
 
@@ -69,8 +68,8 @@ class Product extends React.Component {
 
               {isAuthenticated() && (
                 <div>
-                  <button className="btn btn-danger btn-sm" onClick={this.toggleModal}>Delete</button>
-                  <i className="fa fa-heart" style={{color:this.state.color ? 'red' : 'black'}} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
+                  {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button>: ''}
+                  <i className="fa fa-heart fa-2x" style={{color:this.state.color ? 'red' : 'black'}} onClick={this.handleAlert}></i>
                 </div>
                 
 
@@ -82,7 +81,6 @@ class Product extends React.Component {
               <div><p className="card-footer">Subido por {product.user.email}</p></div>
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
-
             <Modal isOpen={this.state.modalIsOpen}>
               <ModalHeader toggle={this.toggleModal}></ModalHeader>
               <ModalBody>Delete this product?</ModalBody>

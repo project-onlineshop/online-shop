@@ -140,8 +140,9 @@ class ProductForm extends React.Component {
 
     return (
       <article className="ProductForm">
-
+        <h3 className="m-5">Upload your products</h3>
         <form onSubmit={this.handleSubmit}>
+        
           <FormField
             label="Name"
             name="name"

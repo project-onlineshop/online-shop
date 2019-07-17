@@ -65,15 +65,18 @@ class Profile extends React.Component {
     return (
       <div>
         <Link to="/editProfile"><i className="fa fa-edit fa-2x"></i></Link>
-        <Link onClick={this.handleLogout} to="/logout"><i className="fa fa-sign-out fa-2x"></i></Link>
+        <p onClick={this.handleLogout}><i className="fa fa-sign-out fa-2x"></i></p>
+        <h3>Tus productos en venta</h3>
         <div className="ProductsList">
+          
           {this.state.products.map((product, i) => (
-            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
+            <Product showDelete={true} product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
-          <div id="new">
+         
+        </div>
+        <div className="new">
             <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x"></i></Link>
           </div>
-        </div>
       </div>
       
     )
