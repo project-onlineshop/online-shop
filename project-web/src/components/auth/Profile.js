@@ -6,6 +6,7 @@ import { withAuthConsumer } from '../../contexts/AuthStore';
 import authService from '../../services/AuthService';
 import '../../App.css'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class Profile extends React.Component {
   state = {
@@ -18,12 +19,19 @@ class Profile extends React.Component {
     errors: {},
     touch: {},
     redirect: false,
-    products: []
+    products: [],
+    modalIsOpen: false,
   }
 
   addToFavourite = (product) => {
     this.setState({
       favouriteProducts: [product, ...this.state.favouriteProducts]
+    })
+  }
+
+  toggleModal = () => {
+    this.setState({
+      modalIsOpen: !this.state.modalIsOpen
     })
   }
 
@@ -65,7 +73,7 @@ class Profile extends React.Component {
     return (
       <div>
         <Link to="/editProfile"><i className="fa fa-edit fa-2x"></i></Link>
-        <p onClick={this.handleLogout}><i className="fa fa-sign-out fa-2x"></i></p>
+        <p onClick={this.toggleModal}><i className="fa fa-sign-out fa-2x"></i></p>
         <h3>Tus productos en venta</h3>
         <div className="ProductsList">
           
@@ -74,9 +82,25 @@ class Profile extends React.Component {
           ))}
          
         </div>
+        <h3>Tus favoritos</h3>
+        <div className="ProductsList">
+          
+          {this.state.products.map((product, i) => (
+            <Product product={product} key={i} />
+          ))}
+         
+        </div>
         <div className="new">
             <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x"></i></Link>
           </div>
+          <Modal isOpen={this.state.modalIsOpen}>
+              <ModalHeader toggle={this.toggleModal}></ModalHeader>
+              <ModalBody>Do you want to logout?</ModalBody>
+              <ModalFooter>
+                <Button color="success" onClick={this.handleLogout}>Yes</Button>
+                <Button color="danger">No</Button>
+              </ModalFooter>
+            </Modal>
       </div>
       
     )
