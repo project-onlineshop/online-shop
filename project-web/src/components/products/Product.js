@@ -47,7 +47,7 @@ class Product extends React.Component {
     })
   }
 
-  handleDelete = () => this.props.onDeleteProduct(this.props.onFavProductsproduct.id)
+  handleDelete = () => this.props.onDeleteProduct(this.props.product.id)
   handleFavs = () => this.contfavs()
   render() {
     const { product } = this.props
@@ -70,14 +70,16 @@ class Product extends React.Component {
               {isAuthenticated() && (
                 <div>
                   <button className="btn btn-danger btn-sm" onClick={this.toggleModal}>Delete</button>
-                  <i className={this.state.color ? 'fa-heart-red' : 'fa fa-heart'} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
+                  <i className="fa fa-heart" style={{color:this.state.color ? 'red' : 'black'}} onClick={this.handleAlert}></i><h3>{this.state.contadorfavs}</h3>
                 </div>
+                
 
                 // <button type="submit"
                 //   className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
                 //   disabled={hasErrors}>Submit</button>
 
               )}
+              <div><p className="card-footer">Subido por {product.user.email}</p></div>
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
 

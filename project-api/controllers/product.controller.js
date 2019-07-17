@@ -3,6 +3,7 @@ const Product = require('../models/product.model');
 
 module.exports.list = (req, res, next) => {
     Product.find()
+    .populate('user')
     .sort({ createdAt: -1 })
     .then(products => res.json(products))
 }
@@ -14,7 +15,8 @@ module.exports.create = (req, res, next) => {
         category: req.body.category,
         description: req.body.description,
         image: req.body.image,
-        price: req.body.price
+        price: req.body.price,
+        user: req.user
     });
     product.save()
     .then(product => res.status(201).json(product))
@@ -24,7 +26,7 @@ module.exports.create = (req, res, next) => {
 //aqui recogemos los datos de los productos
 module.exports.get = (req, res, next) => {
     Product.findById(req.params.id)
-    .populate('products')
+    .populate('user')
     .then(product => {
         if(!product) {
             throw createError(404, 'Product not found')

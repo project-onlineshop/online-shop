@@ -65,20 +65,7 @@ class ProductsList extends React.Component {
     )
   }
 
-
-
   render() {
-
-    // window.addEventListener('scroll', () => {
-    //   const scrolled = window.scrollY;
-    //   console.log(scrolled);
-    //   var x = document.getElementById("paco");
-    //   if (scrolled >= 600) {
-    //     x.className = "show"
-    //   } else {
-    //     x.className = "hide"
-    //   }
-    // })
 
     const querySearch = queryString.parse(this.props.location.search)
 
@@ -93,7 +80,7 @@ class ProductsList extends React.Component {
           
         </div>
         <div class="new">
-            <Link to="/products/new" ><i onScroll={this.onShow} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x'}></i></Link>
+            <Link to="/products/new" ><i onScroll={this.onShow()} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x'}></i></Link>
           </div>
       </div>
 
