@@ -77,7 +77,7 @@ class ProductsList extends React.Component {
           ))}
           
         </div>
-        <div class="new">
+        <div className="new">
             <Link to="/products/new" ><i onScroll={this.onShow()} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x'}></i></Link>
           </div>
       </div>

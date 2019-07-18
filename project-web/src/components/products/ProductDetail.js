@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Link, Redirect } from 'react-router-dom'
 import ProductsService from '../../services/ProductsService';
 
 class ProductDetail extends Component {
@@ -37,7 +36,7 @@ class ProductDetail extends Component {
   render() {
     const { name, price, image, description } = this.state.product;
     return (
-      <div className="cards">
+      <div className="cards justify-content-md-center">
         <div className="product-card">
           <div className="photo-column">
             <img src={image} className="product-photo" alt="Foto de producto" />
@@ -46,15 +45,10 @@ class ProductDetail extends Component {
             <h5 >{name}</h5>
             <h5 className="product-price">{price}€</h5>
             <p className="product-long">{description}</p>
-
           </div>
-
         </div>
       </div>
-
-
     );
-
   }
 }
 

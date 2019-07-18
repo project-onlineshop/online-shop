@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthStore';
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../../App.css';
+import ProductsService from '../../services/ProductsService';
 
 
 class Product extends React.Component {
@@ -11,7 +12,8 @@ class Product extends React.Component {
     contadorfavs: 0,
     visible: false,
     modalIsOpen: false,
-    color: false
+    color: false,
+    favourites: []
   }
 
   //se muestra la alerta durante 10 segundos
@@ -40,6 +42,13 @@ class Product extends React.Component {
   }
 
   handleAlert = () => {
+
+    ProductsService.createFavourite().then(
+      response => {
+        this.setState({ favourites: response.data })
+      }
+    )
+
     this.setState({
       visible: true,
       color: !this.state.color
@@ -61,15 +70,15 @@ class Product extends React.Component {
             <Link to={`/products/${product.id}`}><img src={product.image} className="card-img-top" alt="product" /></Link>
 
             <div className="card-body">
-              <h5 className="card-title"><b>Name:</b> {product.name}</h5>
-              <p className="card-text"><b>Category:</b> {product.category}</p>
-              <p className="card-text"><b>Price:</b> {product.price}&nbsp;€</p>
-              <p className="card-text"><b>Description:</b> {product.description}</p>
+              <h3 className="card-title"><b> {product.price}&nbsp;€</b></h3>
+              {/* <p className="card-text"><b>Category:</b> {product.category}</p> */}
+              <p className="card-title"><b> {product.name}</b></p>
+              <p className="card-text"> {product.description}</p>
 
               {isAuthenticated() && (
                 <div>
                   {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button>: ''}
-                  <i className="fa fa-heart fa-2x" style={{color:this.state.color ? 'red' : 'black'}} onClick={this.handleAlert}></i>
+                  <i className="fa fa-heart fa-2x m-3" style={{color:this.state.color ? 'red' : 'gray'}} onClick={this.handleAlert}></i>
                 </div>
                 
 

@@ -9,9 +9,12 @@ const deleteProduct = id => http.delete(`/products/${id}`)
 
 const createProduct = product => http.post(`/products`, product)
 
+const createFavourite = () => http.post('/favs')
+
 export default {
     getProducts,
     deleteProduct,
     createProduct,
-    getProductsById
+    getProductsById,
+    createFavourite
 }
