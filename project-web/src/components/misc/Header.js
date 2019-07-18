@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withAuthConsumer } from '../../contexts/AuthStore';
 import '../../App.css';
+import logo from '../../img/logo.png'
 
-const Header = (props) => (
+const Header =(props) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
     {/* <div className="container"> */}
-      <Link className="navbar-brand" to="/">SellBy</Link>
+      <Link className="navbar-brand" to="/"><img src={logo} alt='logo'/></Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
