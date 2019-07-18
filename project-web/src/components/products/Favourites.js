@@ -4,12 +4,12 @@ import Product from './Product';
 const Favourites = ({ products }) => {
   return (
     <div className="Favourites">
-      <h4>Favourite products</h4>
+      <h3>Favourite products</h3>
 
       <div className="row">
-        {products.map((elem, index) =>(
-          <div className="col-12 mb-4" key={index}>
-            <Product product={elem} isFavourite/>
+        {products.map((e, i) =>(
+          <div className="col-12 mb-4" key={i}>
+            <Product product={e} isFavourite/>
           </div>
         ))}
       </div>

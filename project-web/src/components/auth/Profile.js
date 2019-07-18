@@ -7,6 +7,7 @@ import authService from '../../services/AuthService';
 import '../../App.css'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Favourites from '../products/Favourites';
 
 class Profile extends React.Component {
   state = {
@@ -21,14 +22,11 @@ class Profile extends React.Component {
     redirect: false,
     products: [],
     modalIsOpen: false,
-    favourites: []
+    favourites: [],
+    opacity: 0
   }
 
-  addToFavourite = (product) => {
-    this.setState({
-      favouriteProducts: [product, ...this.state.favouriteProducts]
-    })
-  }
+
 
   toggleModal = () => {
     this.setState({
@@ -48,16 +46,31 @@ class Profile extends React.Component {
     )
   }
 
+  //boton logout
   handleLogout = () => {
     authService.logout()
       .then(() => {
         this.props.onUserChange(null)
-          this.setState({ redirect: true })
-        })
+        this.setState({ redirect: true })
+      })
   }
 
   componentDidMount() {
     this.fetchProducts()
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const scrolled = window.scrollY;
+    if (scrolled >= 600) {
+      this.setState({
+        opacity: 1
+      })
+    }
   }
 
 
@@ -73,37 +86,38 @@ class Profile extends React.Component {
 
     return (
       <div>
-        <Link to="/editProfile"><i className="fa fa-edit fa-2x"></i></Link>
-        <p onClick={this.toggleModal}><i className="fa fa-sign-out fa-2x"></i></p>
+        <div className="row justify-content-center ">
+          <div className="d-inline mr-2">
+            <Link to="/editProfile"><i className="fa fa-edit fa-2x"></i></Link>
+          </div>
+          <div className="d-inline ml-2">
+            <p onClick={this.toggleModal}><i className="fa fa-sign-out fa-2x"></i></p>
+          </div>
+        </div>
+
         <h3>Tus productos en venta</h3>
         <div className="ProductsList">
-          
+
           {this.state.products.map((product, i) => this.props.user.id === product.user.id && (
             <Product showDelete={true} product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
           ))}
-         
+
         </div>
-        <h3>Tus favoritos</h3>
-        <div className="ProductsList">
-          
-          {this.state.products.map((product, i) => (
-            <Product product={product} key={i} />
-          ))}
-         
-        </div>
+
+        <Favourites products={this.state.favourites} />
         <div className="new">
-            <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x"></i></Link>
-          </div>
-          <Modal isOpen={this.state.modalIsOpen}>
-              <ModalHeader toggle={this.toggleModal}></ModalHeader>
-              <ModalBody>Do you want to logout?</ModalBody>
-              <ModalFooter>
-                <Button color="success" onClick={this.handleLogout}>Yes</Button>
-                <Button color="danger">No</Button>
-              </ModalFooter>
-            </Modal>
+          <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x" onScroll={this.handleScroll()}></i></Link>
+        </div>
+        <Modal isOpen={this.state.modalIsOpen}>
+          <ModalHeader toggle={this.toggleModal}></ModalHeader>
+          <ModalBody>Do you want to logout?</ModalBody>
+          <ModalFooter>
+            <Button color="success" onClick={this.handleLogout}>Yes</Button>
+            <Button color="danger">No</Button>
+          </ModalFooter>
+        </Modal>
       </div>
-      
+
     )
   }
 }

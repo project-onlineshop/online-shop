@@ -13,7 +13,8 @@ class Product extends React.Component {
     visible: false,
     modalIsOpen: false,
     color: false,
-    favourites: []
+    favourites: [],
+    products: []
   }
 
   //se muestra la alerta durante 10 segundos
@@ -41,18 +42,18 @@ class Product extends React.Component {
     })
   }
 
-  handleAlert = () => {
+
+  handleAlert = (product) => {
 
     ProductsService.createFavourite().then(
       response => {
-        this.setState({ favourites: response.data })
+        this.setState({
+          favourites: [product, ...this.state.favourites],
+          visible: true,
+          color: !this.state.color
+        })
       }
     )
-
-    this.setState({
-      visible: true,
-      color: !this.state.color
-    })
   }
 
   handleDelete = () => this.props.onDeleteProduct(this.props.product.id)
@@ -77,10 +78,10 @@ class Product extends React.Component {
 
               {isAuthenticated() && (
                 <div>
-                  {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button>: ''}
-                  <i className="fa fa-heart fa-2x m-3" style={{color:this.state.color ? 'red' : 'gray'}} onClick={this.handleAlert}></i>
+                  {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button> : ''}
+                  <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i>
                 </div>
-                
+
 
                 // <button type="submit"
                 //   className={`btn ${hasErrors ? 'btn-danger' : 'btn-success'}`}
