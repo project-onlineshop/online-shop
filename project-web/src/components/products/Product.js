@@ -77,7 +77,7 @@ class Product extends React.Component {
               <p className="card-text"> {product.description}</p>
 
               {isAuthenticated() && (
-                <div>
+                <div className="fav-del-icons">
                   {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button> : ''}
                   <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i>
                 </div>

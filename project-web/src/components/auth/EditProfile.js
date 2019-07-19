@@ -44,7 +44,7 @@ class EditProfile extends Component {
     if (this.isValid()) {
       authService.updateProfile(this.state.user)
         .then(
-          (user) => this.setState({ user: {...this.state.user, ...user} }),
+          (user) => this.setState({ user: { ...this.state.user, ...user } }),
           (error) => {
             const { message, errors } = error.response.data;
             this.setState({
@@ -68,52 +68,52 @@ class EditProfile extends Component {
     authService.logout()
       .then(() => {
         this.props.onUserChange(null)
-          this.setState({ redirect: true })
-        })
+        this.setState({ redirect: true })
+      })
   }
 
   componentDidMount() {
     authService.getProfile()
       .then(
-          (user) => this.setState({ user: {...this.state.user, ...user} }),
-          (error) => console.error(error)
-        )
+        (user) => this.setState({ user: { ...this.state.user, ...user } }),
+        (error) => console.error(error)
+      )
   }
 
   render() {
-    const { errors, user, touch } =  this.state;
+    const { errors, user, touch } = this.state;
 
-    if(this.state.redirect){
-      return(
-      <Redirect to="/products"/>
+    if (this.state.redirect) {
+      return (
+        <Redirect to="/products" />
       )
     }
 
 
     return (
       <div className="box mx-auto">
-        {/* <Link to="/products/favs" ><i className="fa fa-heart"></i></Link> */}
+
         <div className="row justify-content-center m-5">
-          {/* <i className="fa fa-sign-out btn-logout" onClick={this.handleLogout}></i> */}
-          
+
           <div className="col-5 ">
-          <h3>Profile</h3>
+            <h3>Profile</h3>
             <form id="profile-form" className="mt-4" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" name="email" className="form-control" value={user.email} disabled/>
+                <input type="email" name="email" className="form-control" value={user.email} disabled />
               </div>
               <div className="form-group">
                 <label>Password</label>
                 <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
-                <div className="invalid-feedback">{ errors.password }</div>
+                <div className="invalid-feedback">{errors.password}</div>
               </div>
             </form>
             <label htmlFor="avatar" className="avatar"><img src={user.avatar ? URL.createObjectURL(user.avatar) : user.avatarURL} className="rounded mb-3" alt="Cinque Terre" /></label>
-            <input type="file" id="avatar"  name="avatar" onChange={this.handleChange} />
+            <input type="file" id="avatar" name="avatar" onChange={this.handleChange} />
             <button className="btn btn-info m-3" form="profile-form" type="submit" disabled={!this.isValid()}>Update profile</button>
             <p className="mt-5"><small>This user is able to upload a new profile photo, using NodeJS and Multer uploader.</small></p>
-          {/* </div> */}</div>
+
+          </div>
         </div>
       </div>
     );

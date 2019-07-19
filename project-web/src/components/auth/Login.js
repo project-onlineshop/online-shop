@@ -136,7 +136,7 @@ class Login extends React.Component {
                         </div>)
                     }
 
-                    {/* <FormField
+                    <FormField
                         label="email"
                         name="email"
                         onBlur={this.handleBlur}
@@ -145,9 +145,9 @@ class Login extends React.Component {
                         touch={touch.email}
                         error={errors.email}
                         inputType="text"
-                        validationClassName={this.getValidationClassName('email')} /> */}
+                        validationClassName={this.getValidationClassName('email')} />
 
-                    <TextField
+                    {/* <TextField
                         label="email"
                         id="standard-dense"
                         name="email"
@@ -158,7 +158,7 @@ class Login extends React.Component {
                         touch={touch.email}
                         error={errors.email}
                         inputType="text"
-                        validationClassName={this.getValidationClassName('email')} />
+                        validationClassName={this.getValidationClassName('email')} /> */}
 
                     <FormField
                         label="password"

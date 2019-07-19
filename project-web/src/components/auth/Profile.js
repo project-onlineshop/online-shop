@@ -64,14 +64,14 @@ class Profile extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll = () => {
-    const scrolled = window.scrollY;
-    if (scrolled >= 600) {
-      this.setState({
-        opacity: 1
-      })
-    }
-  }
+  // handleScroll = () => {
+  //   const scrolled = window.scrollY;
+  //   if (scrolled >= 600) {
+  //     this.setState({
+  //       opacity: 1
+  //     })
+  //   }
+  // }
 
 
   deleteProduct = (productId) => {
@@ -88,10 +88,10 @@ class Profile extends React.Component {
       <div>
         <div className="row justify-content-center ">
           <div className="d-inline mr-2">
-            <Link to="/editProfile"><i className="fa fa-edit fa-2x"></i></Link>
+            <Link to="/editProfile"><i className="fa fa-edit fa-3x buttons-profile"></i></Link>
           </div>
           <div className="d-inline ml-2">
-            <p onClick={this.toggleModal}><i className="fa fa-sign-out fa-2x"></i></p>
+            <p onClick={this.toggleModal}><i className="fa fa-sign-out fa-3x buttons-profile"></i></p>
           </div>
         </div>
 
@@ -106,7 +106,7 @@ class Profile extends React.Component {
 
         <Favourites products={this.state.favourites} />
         <div className="new">
-          <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x" onScroll={this.handleScroll()}></i></Link>
+          <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x buttons-profile" onScroll={this.handleScroll}></i></Link>
         </div>
         <Modal isOpen={this.state.modalIsOpen}>
           <ModalHeader toggle={this.toggleModal}></ModalHeader>

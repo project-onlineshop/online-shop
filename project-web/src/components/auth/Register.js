@@ -94,7 +94,7 @@ export default class Register extends Component {
   }
 
   render() {
-    const { isRegistered, errors, user, touch } =  this.state;
+    const { isRegistered, errors, user, touch } = this.state;
     if (isRegistered) {
       return (<Redirect to="/products" />)
     }
@@ -103,32 +103,32 @@ export default class Register extends Component {
     // const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)
 
     return (
-      // <div className="box mx-auto">
-        // <div className="row justify-content-md-center">
-          <div className="row justify-content-md-center login">
-            <h3 className="justify-content-md-center mb-5">Sign up</h3>
-            <form id="register-form" className="mt-4" onSubmit={this.handleSubmit}>
+      <div className="box mx-auto">
+
+        <div className="row justify-content-md-center">
+          <div className="col-5 ">
+            <h3> Sign up</h3>
+            <form id="register-form" className="mt-4 mb-10" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
                 <input type="email" name="email" className={`form-control ${touch.email && errors.email ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.email} />
-                <div className="invalid-feedback">{ errors.email }</div>
+                <div className="invalid-feedback">{errors.email}</div>
               </div>
               <div className="form-group">
                 <label>Password</label>
                 <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
-                <div className="invalid-feedback">{ errors.password }</div>
+                <div className="invalid-feedback">{errors.password}</div>
               </div>
               <div className="form-group">
                 <label>Confirm Password</label>
                 <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
-                <div className="invalid-feedback">{ errors.password }</div>
+                <div className="invalid-feedback">{errors.password}</div>
               </div>
               <button className="btn btn-danger" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
             </form>
-            
           </div>
-        // </div>
-      // </div>
+        </div>
+      </div>
     );
   }
 }

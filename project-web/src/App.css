@@ -40,6 +40,24 @@
   width: 10%;
 }
 
+.fav-del-icons{
+  text-align: center !important;
+}
+
+.buttons-profile{
+    color: cornflowerblue !important;
+    cursor: pointer !important;
+}
+
+.navbar{
+  background-color: rgba(0, 175, 225, 0.9) !important;
+  box-shadow: 0px 10px 8px #8f8f8f;
+}
+
+.profile a {
+  color: #fff;
+}
+
 .card{
   display: flex;
   width: 100%;

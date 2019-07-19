@@ -5,7 +5,7 @@ import '../../App.css';
 import logo from '../../img/logo.png'
 
 const Header =(props) => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <nav className="navbar navbar-expand-lg navbar-light mb-5">
     {/* <div className="container"> */}
       <Link className="navbar-brand" to="/"><img src={logo} alt='logo'/></Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@ const Header =(props) => (
           )}
 
           {props.isAuthenticated() && (
-            <li className="nav-item">
+            <li className="nav-item profile">
               <Link to="/profile">{props.user.email}</Link>
             </li>
           )}
