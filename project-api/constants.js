@@ -1,3 +1,3 @@
 module.exports = {
-    category: ["cars", "mobiles", "clothes"]
+    category: ["cars", "motos", "trucks", "boats", "planes"]
 }

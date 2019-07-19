@@ -70,7 +70,11 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.isValid()) {
+    const { password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+  }
+    else if (this.isValid()) {
       authService.register(this.state.user)
         .then(
           (user) => this.setState({ isRegistered: true }),
@@ -99,9 +103,6 @@ export default class Register extends Component {
       return (<Redirect to="/products" />)
     }
 
-    // const campusOpts = campus.map(c => <option key={c} value={c}>{c}</option>)
-    // const courseOpts = courses.map(c => <option key={c} value={c}>{c}</option>)
-
     return (
       <div className="box mx-auto">
 
@@ -121,7 +122,7 @@ export default class Register extends Component {
               </div>
               <div className="form-group">
                 <label>Confirm Password</label>
-                <input type="password" name="password" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password} />
+                <input type="password2" name="password2" className={`form-control ${touch.password && errors.password ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.password2} />
                 <div className="invalid-feedback">{errors.password}</div>
               </div>
               <button className="btn btn-danger" form="register-form" type="submit" disabled={!this.isValid()}> Create the Account</button>
