@@ -23,18 +23,18 @@ class Product extends React.Component {
     this.setState({ readMore: !this.state.readMore })
   }
 
-  //se muestra la alerta durante 10 segundos
-  // componentDidMount() {
-  //   this.timer = setInterval(() => {
-  //     this.setState({
-  //       visible: false
-  //     });
-  //   }, 10000);
-  // }
+  // se muestra la alerta durante 10 segundos
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({
+        visible: false
+      });
+    }, 10000);
+  }
 
-  // componentWillMount() {
-  //   clearInterval(this.timer);
-  // }
+  componentWillMount() {
+    clearInterval(this.timer);
+  }
 
   toggleModal = () => {
     this.setState({
@@ -48,18 +48,18 @@ class Product extends React.Component {
     })
   }
 
-  // handleAlert = (product) => {
+  handleAlert = (product) => {
 
-  //   ProductsService.createFavourite().then(
-  //     response => {
-  //       this.setState({
-  //         favourites: [product, ...this.state.favourites],
-  //         visible: true,
-  //         color: !this.state.color
-  //       })
-  //     }
-  //   )
-  // }
+    ProductsService.createFavourite().then(
+      response => {
+        this.setState({
+          favourites: [product, ...this.state.favourites],
+          visible: true,
+          color: !this.state.color
+        })
+      }
+    )
+  }
 
 
   handleAlert = () =>{
@@ -106,9 +106,9 @@ class Product extends React.Component {
               {isAuthenticated() && (
                 <div className="fav-del-icons">
                   {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button> : ''}
-                  {/* <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i> */}
-                  <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} 
-                  onClick={() => { this.props.addToFavourite(product) }}></i>
+                  <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i>
+                  {/* <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} 
+                  onClick={() => { this.props.addToFavourite(product) }}></i> */}
                 </div>
 
 

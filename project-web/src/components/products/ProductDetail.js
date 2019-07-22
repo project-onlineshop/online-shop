@@ -37,13 +37,14 @@ class ProductDetail extends Component {
     const { name, price, image, description } = this.state.product;
     return (
       <div className="cards justify-content-md-center">
+        <h1 className="product-price"> <b>{name}</b></h1>
         <div className="product-card">
           <div className="photo-column">
             <img src={image} className="product-photo m-3" alt="Foto de producto" />
           </div>
           <div className="product-text">
             <h5><b>{price}</b> €</h5>
-            <h5 className="product-price"> <b>{name}</b></h5>
+            
             <p className="product-long">{description}</p>
           </div>
         </div>

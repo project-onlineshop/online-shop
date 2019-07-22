@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Crete+Round&display=swap');
 
 .App {
   font-family: 'Muli', sans-serif;
 }
 
+h1, h2, h3 {
+  font-family: 'Crete Round', serif;
+}
 
 .container{
   height: auto;
@@ -91,7 +96,7 @@
 }
 
 .cards{                                       
-  height: 100vh;
+  margin-bottom: 100px;
 }
 
 .product-photo{
