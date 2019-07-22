@@ -109,7 +109,7 @@ export default class Register extends Component {
         <div className="row justify-content-md-center">
           <div className="col-5 ">
             <h3> Sign up</h3>
-            <form id="register-form" className="mt-4 mb-10" onSubmit={this.handleSubmit}>
+            <form id="register-form" className="mt-4 registerForm" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
                 <input type="email" name="email" className={`form-control ${touch.email && errors.email ? 'is-invalid' : ''}`} onChange={this.handleChange} onBlur={this.handleBlur} value={user.email} />

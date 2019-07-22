@@ -26,7 +26,11 @@ class Profile extends React.Component {
     opacity: 0
   }
 
-
+  addToFavourite = (product) => {
+    this.setState({
+      favourites: [product, ...this.state.favourites]
+    })
+  }
 
   toggleModal = () => {
     this.setState({
@@ -86,8 +90,8 @@ class Profile extends React.Component {
 
     return (
       <div>
-        <div className="row justify-content-center ">
-          <div className="d-inline mr-2">
+        <div className="row justify-content-center mb-3">
+          <div className="d-inline mr-2 ">
             <Link to="/editProfile"><i className="fa fa-edit fa-3x buttons-profile"></i></Link>
           </div>
           <div className="d-inline ml-2">
@@ -95,16 +99,16 @@ class Profile extends React.Component {
           </div>
         </div>
 
-        <h3>Tus productos en venta</h3>
+        <h3>Selling Products</h3>
         <div className="ProductsList">
 
           {this.state.products.map((product, i) => this.props.user.id === product.user.id && (
-            <Product showDelete={true} product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
+            <Product showDelete={true} product={product} key={i} onDeleteProduct={this.deleteProduct} addToFavourite={this.addToFavourite} />
           ))}
 
         </div>
 
-        <Favourites products={this.state.favourites} />
+        <Favourites products={this.state.favourites}/>
         <div className="new">
           <Link to="/products/new" ><i className="fa fa-plus-circle fa-3x buttons-profile" onScroll={this.handleScroll}></i></Link>
         </div>

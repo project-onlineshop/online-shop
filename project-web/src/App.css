@@ -19,6 +19,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: end;
+  margin-top: 50px;
 }
 
 .new {
@@ -42,6 +43,18 @@
 
 .fav-del-icons{
   text-align: center !important;
+}
+
+.fa-user{
+  color: green;
+}
+
+.card-footer{
+  text-align: center;
+}
+
+.registerForm{
+  margin-bottom: 100%;
 }
 
 .buttons-profile{

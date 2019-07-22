@@ -9,7 +9,7 @@ const Favourites = ({ products }) => {
       <div className="row">
         {products.map((e, i) =>(
           <div className="col-12 mb-4" key={i}>
-            <Product product={e} isFavourite/>
+            <Product product={e} />
           </div>
         ))}
       </div>

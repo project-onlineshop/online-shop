@@ -25,7 +25,7 @@ const ProductSchema = new mongoose.Schema({
     description: {
         type: String,
         required: 'Description is required',
-        maxlength: 250
+        maxlength: 1250
     },
     user: {
         type: mongoose.Types.ObjectId,

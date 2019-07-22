@@ -6,6 +6,7 @@ import SearchBar from '../misc/SearchBar';
 import queryString from 'query-string';
 import '../../App.css'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
+import FilterCategory from './FilterCategory';
 
 
 class ProductsList extends React.Component {
@@ -35,14 +36,14 @@ class ProductsList extends React.Component {
     )
   }
 
-  onShow = () => {
-    const scrolled = window.scrollY;
-    if (scrolled >= 600) {
-      this.setState({
-        opacity: 1
-      })
-    }
-  }
+  // onShow = () => {
+  //   const scrolled = window.scrollY;
+  //   if (scrolled >= 600) {
+  //     this.setState({
+  //       opacity: 1
+  //     })
+  //   }
+  // }
 
   componentDidMount() {
     this.fetchProducts()
@@ -65,6 +66,10 @@ class ProductsList extends React.Component {
 
   render() {
 
+    //  const categoryproducts = this.state.searchProducts.filter(e => {
+    //   return this.state.category === null || this.state.category === e.category
+    // }) 
+
     const querySearch = queryString.parse(this.props.location.search)
 
     return (
@@ -73,12 +78,13 @@ class ProductsList extends React.Component {
         {/* <FilterCategory onFilterCategory={this.filterCategory} /> */}
         <div className="ProductsList">
           {this.state.searchProducts.map((product, i) => (
-            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} onFavProducts={this.contfavs} />
+            <Product product={product} key={i} onDeleteProduct={this.deleteProduct} addToFavourite={this.addToFavourite} />
           ))}
           
         </div>
         <div className="new">
-            <Link to="/products/new" ><i onScroll={this.onShow()} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x buttons-profile'}></i></Link>
+            {/* <Link to="/products/new" ><i onScroll={this.onShow()} className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x buttons-profile'}></i></Link> */}
+            <Link to="/products/new"><i className={this.state.opacity ? 'hide' :'fa fa-plus-circle fa-3x buttons-profile'}></i></Link>
           </div>
       </div>
 

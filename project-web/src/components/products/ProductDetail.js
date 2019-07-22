@@ -39,11 +39,11 @@ class ProductDetail extends Component {
       <div className="cards justify-content-md-center">
         <div className="product-card">
           <div className="photo-column">
-            <img src={image} className="product-photo" alt="Foto de producto" />
+            <img src={image} className="product-photo m-3" alt="Foto de producto" />
           </div>
           <div className="product-text">
-            <h5 >{name}</h5>
-            <h5 className="product-price">{price}€</h5>
+            <h5><b>{price}</b> €</h5>
+            <h5 className="product-price"> <b>{name}</b></h5>
             <p className="product-long">{description}</p>
           </div>
         </div>

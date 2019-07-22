@@ -13,22 +13,28 @@ class Product extends React.Component {
     visible: false,
     modalIsOpen: false,
     color: false,
-    favourites: [],
-    products: []
+    readMore: false
+    // favourites: [],
+    // products: []
+  }
+
+  onClickReadMore = (e) => {
+    e.preventDefault()
+    this.setState({ readMore: !this.state.readMore })
   }
 
   //se muestra la alerta durante 10 segundos
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      this.setState({
-        visible: false
-      });
-    }, 10000);
-  }
+  // componentDidMount() {
+  //   this.timer = setInterval(() => {
+  //     this.setState({
+  //       visible: false
+  //     });
+  //   }, 10000);
+  // }
 
-  componentWillMount() {
-    clearInterval(this.timer);
-  }
+  // componentWillMount() {
+  //   clearInterval(this.timer);
+  // }
 
   toggleModal = () => {
     this.setState({
@@ -42,18 +48,25 @@ class Product extends React.Component {
     })
   }
 
+  // handleAlert = (product) => {
 
-  handleAlert = (product) => {
+  //   ProductsService.createFavourite().then(
+  //     response => {
+  //       this.setState({
+  //         favourites: [product, ...this.state.favourites],
+  //         visible: true,
+  //         color: !this.state.color
+  //       })
+  //     }
+  //   )
+  // }
 
-    ProductsService.createFavourite().then(
-      response => {
-        this.setState({
-          favourites: [product, ...this.state.favourites],
-          visible: true,
-          color: !this.state.color
-        })
-      }
-    )
+
+  handleAlert = () =>{
+    this.setState({
+      visible: true,
+      color: !this.state.color
+    })
   }
 
   handleDelete = () => this.props.onDeleteProduct(this.props.product.id)
@@ -61,8 +74,20 @@ class Product extends React.Component {
   render() {
     const { product } = this.props
 
-    return (
+    // const summaryLong = product.summary.replace(/<p>/g, '').replace(/<\/p>/g, '')
+    // const summaryShort = summaryLong.slice(0, 50)
 
+    // const summary = this.state.readMore
+    //   ? summaryLong
+    //   : summaryShort
+
+    // const readText = this.state.readMore
+    //   ? 'Read Less'
+    //   : 'Read More' 
+    
+
+    return (
+     
 
       <AuthContext.Consumer>
         {({ isAuthenticated }) => (
@@ -75,11 +100,15 @@ class Product extends React.Component {
               {/* <p className="card-text"><b>Category:</b> {product.category}</p> */}
               <p className="card-title"><b> {product.name}</b></p>
               <p className="card-text"> {product.description}</p>
+              {/* <p className="card-text">
+              {summary}</p> */}
 
               {isAuthenticated() && (
                 <div className="fav-del-icons">
                   {this.props.showDelete ? <button className="btn btn-danger btn-sm mb-3" onClick={this.toggleModal}>Delete</button> : ''}
-                  <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i>
+                  {/* <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} onClick={this.handleAlert}></i> */}
+                  <i className="fa fa-heart fa-2x m-3" style={{ color: this.state.color ? 'red' : 'gray' }} 
+                  onClick={() => { this.props.addToFavourite(product) }}></i>
                 </div>
 
 
@@ -88,7 +117,12 @@ class Product extends React.Component {
                 //   disabled={hasErrors}>Submit</button>
 
               )}
-              <div><p className="card-footer">Subido por {product.user.email}</p></div>
+              {/* <div><a href="#"
+                  className="card-link"
+                  onClick={this.onClickReadMore}>
+                  {readText}</a></div> */}
+             
+              <div><p className="card-footer">{product.user.email} <i class="fa fa-user"></i>  </p></div>
             </div>
             <Alert isOpen={this.state.visible}>Favourite Saved!</Alert>
             <Modal isOpen={this.state.modalIsOpen}>

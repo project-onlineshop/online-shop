@@ -93,11 +93,11 @@ class EditProfile extends Component {
     return (
       <div className="box mx-auto">
 
-        <div className="row justify-content-center m-5">
+        <div className="row justify-content-center m-5 registerForm">
 
           <div className="col-5 ">
             <h3>Profile</h3>
-            <form id="profile-form" className="mt-4" onSubmit={this.handleSubmit}>
+            <form id="profile-form" className="mt-4 " onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
                 <input type="email" name="email" className="form-control" value={user.email} disabled />
