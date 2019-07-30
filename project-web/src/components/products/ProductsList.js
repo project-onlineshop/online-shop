@@ -36,14 +36,6 @@ class ProductsList extends React.Component {
     )
   }
 
-  // onShow = () => {
-  //   const scrolled = window.scrollY;
-  //   if (scrolled >= 600) {
-  //     this.setState({
-  //       opacity: 1
-  //     })
-  //   }
-  // }
 
   componentDidMount() {
     this.fetchProducts()
@@ -66,18 +58,18 @@ class ProductsList extends React.Component {
 
   render() {
 
-    //  const categoryproducts = this.state.searchProducts.filter(e => {
-    //   return this.state.category === null || this.state.category === e.category
-    // }) 
+     const categoryproducts = this.state.searchProducts.filter(e => {
+      return this.state.category === null || this.state.category === e.category
+    }) 
 
     const querySearch = queryString.parse(this.props.location.search)
 
     return (
       <div>
         <SearchBar onSearch={this.handleSearch} querySearch={querySearch} />
-        {/* <FilterCategory onFilterCategory={this.filterCategory} /> */}
+        <FilterCategory onFilterCategory={this.filterCategory} />
         <div className="ProductsList">
-          {this.state.searchProducts.map((product, i) => (
+          {categoryproducts.map((product, i) => (
             <Product product={product} key={i} onDeleteProduct={this.deleteProduct} addToFavourite={this.addToFavourite} />
           ))}
           

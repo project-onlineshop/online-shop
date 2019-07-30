@@ -50,6 +50,16 @@ class Profile extends React.Component {
     )
   }
 
+  fetchProfile = () => {
+    
+    authService.getProfile()
+    .then(user => {
+      
+      this.props.onUserChange(user)
+    }
+    )
+  }
+
   //boton logout
   handleLogout = () => {
     authService.logout()
@@ -60,22 +70,12 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+
+    this.fetchProfile()
     this.fetchProducts()
-    window.addEventListener('scroll', this.handleScroll);
+
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  // handleScroll = () => {
-  //   const scrolled = window.scrollY;
-  //   if (scrolled >= 600) {
-  //     this.setState({
-  //       opacity: 1
-  //     })
-  //   }
-  // }
 
 
   deleteProduct = (productId) => {

@@ -13,8 +13,8 @@ class Product extends React.Component {
     visible: false,
     modalIsOpen: false,
     color: false,
-    readMore: false
-    // favourites: [],
+    readMore: false,
+    favourites: []
     // products: []
   }
 
@@ -31,6 +31,8 @@ class Product extends React.Component {
       });
     }, 10000);
   }
+
+
 
   componentWillMount() {
     clearInterval(this.timer);
@@ -49,8 +51,7 @@ class Product extends React.Component {
   }
 
   handleAlert = (product) => {
-
-    ProductsService.createFavourite().then(
+    ProductsService.createFavourite(this.props.product.id).then(
       response => {
         this.setState({
           favourites: [product, ...this.state.favourites],
@@ -61,13 +62,6 @@ class Product extends React.Component {
     )
   }
 
-
-  handleAlert = () =>{
-    this.setState({
-      visible: true,
-      color: !this.state.color
-    })
-  }
 
   handleDelete = () => this.props.onDeleteProduct(this.props.product.id)
   handleFavs = () => this.contfavs()
